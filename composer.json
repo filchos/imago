@@ -1,0 +1,42 @@
+{
+    "name":"filchos/imago",
+    "description":"A library for reading and transforming content in a chainable way",
+    "type":"library",
+    "license":"MIT",
+    "keywords":[
+        "crawler",
+        "curl",
+        "json",
+        "scraping",
+        "transforming",
+        "xml"
+    ],
+    "homepage":"https://github.com/filchos/Imago",
+    "authors":[
+        {
+            "name":"Olaf Schneider",
+            "email":"mail@olafschneider.de",
+            "homepage":"http://olafschneider.de"
+        }
+    ],
+    "require":{
+        "php":">=5.4.0"
+    },
+    "require-dev":{
+        "phpunit/phpunit":"~4.0"
+    },
+    "support":{
+        "issues":"https://github.com/filchos/Imago/issues",
+        "source":"https://github.com/filchos/Imago"
+    },
+    "autoload":{
+        "psr-4":{
+            "Filchos\\Imago\\":"src/Imago/"
+        }
+    },
+    "autoload-dev":{
+        "classmap":[
+            "tests"
+        ]
+    }
+}
