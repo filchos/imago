@@ -2,22 +2,26 @@
 
 namespace Filchos\Imago\Source;
 
-use Filchos\Imago\OptionTrait;
+use Filchos\Imago\Container;
 use Filchos\Imago\Transformable;
 
 abstract class AbstractSource implements Transformable
 {
 
-    use OptionTrait;
+    private $options;
 
     public function __construct(array $options = [])
     {
-        $this->setOptions($options);
+        $this->options = new Container($options);
     }
 
     public function __invoke()
     {
         return $this->get();
+    }
+
+    public function options() {
+        return $this->options;
     }
 
     public function to($decoratorClassName, array $options = [])

@@ -24,7 +24,7 @@ class FileReader extends AbstractSource
 
     public function get()
     {
-        $path = $this->getOption('path');
+        $path = $this->options()->get('path');
         if (is_readable($path)) {
             return file_get_contents($path);
         } else {

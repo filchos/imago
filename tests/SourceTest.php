@@ -24,42 +24,42 @@ class ScourceTest extends PHPUnit_Framework_TestCase
     {
         $imago = $this->getOptionImago();
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten'];
-        $this->assertSame($should, $imago->getOptions());
+        $this->assertSame($should, $imago->options()->all());
     }
 
     public function testGetOption()
     {
         $imago = $this->getOptionImago();
-        $this->assertSame('Skellefteå', $imago->getOption('city'));
-        $this->assertSame('Västerbotten', $imago->getOption('region'));
-        $this->assertNull($imago->getOption('country'));
-        $this->assertSame('Sverige', $imago->getOption('country', 'Sverige'));
+        $this->assertSame('Skellefteå', $imago->options()->get('city'));
+        $this->assertSame('Västerbotten', $imago->options()->get('region'));
+        $this->assertNull($imago->options()->get('country'));
+        $this->assertSame('Sverige', $imago->options()->get('country', 'Sverige'));
     }
 
     public function testHasOption()
     {
         $imago = $this->getOptionImago();
-        $this->assertTrue($imago->hasOption('city'));
-        $this->assertFalse($imago->hasOption('country'));
+        $this->assertTrue($imago->options()->has('city'));
+        $this->assertFalse($imago->options()->has('country'));
     }
 
     public function testSetOption()
     {
         $imago = $this->getOptionImago();
-        $imago->setOption('country', 'Sverige');
-        $this->assertTrue($imago->hasOption('country'));
-        $this->assertSame('Sverige', $imago->getOption('country'));
+        $imago->options()->set('country', 'Sverige');
+        $this->assertTrue($imago->options()->has('country'));
+        $this->assertSame('Sverige', $imago->options()->get('country'));
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten', 'country' => 'Sverige'];
-        $this->assertSame($should, $imago->getOptions());
+        $this->assertSame($should, $imago->options()->all());
     }
 
     public function testDeleteOption()
     {
         $imago = $this->getOptionImago();
-        $imago->deleteOption('region');
-        $this->assertFalse($imago->hasOption('region'));
+        $imago->options()->delete('region');
+        $this->assertFalse($imago->options()->has('region'));
         $should = ['city' => 'Skellefteå'];
-        $this->assertSame($should, $imago->getOptions());
+        $this->assertSame($should, $imago->options()->all());
     }
 
     protected function getOptionImago()

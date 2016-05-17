@@ -43,7 +43,7 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
     public function testOption()
     {
         $imago = new FileReader(['path' => __DIR__ . '/files/city.txt']);
-        $this->assertSame(__DIR__ . '/files/city.txt', $imago->getOption('path'));
+        $this->assertSame(__DIR__ . '/files/city.txt', $imago->options()->get('path'));
     }
 
     public function testReadFileUsingConstructorShortcut()

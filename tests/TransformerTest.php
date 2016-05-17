@@ -19,14 +19,14 @@ class TransformerTest extends PHPUnit_Framework_TestCase
     {
         $imago = new Value('Abisko');
         $imago = new Repeater($imago);
-        $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $imago->getInner());
+        $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $imago->inner());
     }
 
     public function testOptionsThroughConstructor()
     {
         $imago = new Value('Abisko');
         $imago = new Repeater($imago, ['repeat' => 3]);
-        $this->assertSame(3, $imago->getOption('repeat'));
+        $this->assertSame(3, $imago->options()->get('repeat'));
         $this->assertSame('AbiskoAbiskoAbisko', $imago->get());
     }
 
@@ -34,8 +34,8 @@ class TransformerTest extends PHPUnit_Framework_TestCase
     {
         $imago = new Value('Piteå');
         $imago = new Repeater($imago);
-        $imago->setOption('repeat', 4);
-        $this->assertSame(4, $imago->getOption('repeat'));
+        $imago->options()->set('repeat', 4);
+        $this->assertSame(4, $imago->options()->get('repeat'));
         $this->assertSame('PiteåPiteåPiteåPiteå', $imago->get());
     }
 
@@ -48,15 +48,15 @@ class TransformerTest extends PHPUnit_Framework_TestCase
     public function testChainingWithToOption()
     {
         $imago = (new Value('Piteå'))->to('Repeater', ['repeat' => 3]);
-        $this->assertSame(3, $imago->getOption('repeat'));
+        $this->assertSame(3, $imago->options()->get('repeat'));
         $this->assertSame('PiteåPiteåPiteå', $imago->get());
     }
 
     public function testChainingWithOptionThroughSetter()
     {
         $imago = (new Value('Piteå'))->to('Repeater');
-        $imago->setOption('repeat', 3);
-        $this->assertSame(3, $imago->getOption('repeat'));
+        $imago->options()->set('repeat', 3);
+        $this->assertSame(3, $imago->options()->get('repeat'));
         $this->assertSame('PiteåPiteåPiteå', $imago->get());
     }
 }
@@ -66,7 +66,7 @@ class Repeater extends AbstractTransformer
 
     public function transform($string)
     {
-        $multiplier = (int) $this->getOption('repeat', 2);
+        $multiplier = (int) $this->options()->get('repeat', 2);
         return str_repeat($string, $multiplier);
     }
 }

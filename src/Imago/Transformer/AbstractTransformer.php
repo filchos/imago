@@ -16,14 +16,14 @@ abstract class AbstractTransformer extends AbstractSource
         $this->inner = $inner;
     }
 
-    public function getInner()
+    public function inner()
     {
         return $this->inner;
     }
 
     public function get()
     {
-        return $this->transform($this->getInner()->get());
+        return $this->transform($this->inner()->get());
     }
 
     abstract protected function transform($mixed);
