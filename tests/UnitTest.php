@@ -21,5 +21,4 @@ class UnitTest extends PHPUnit_Framework_TestCase
         curl_close($ch);
         $this->assertSame('Gåsören', $value);
     }
-
 }
