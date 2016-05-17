@@ -5,10 +5,12 @@ namespace Filchos\Imago;
 class Container
 {
 
+    protected $owner;
     protected $entries;
 
-    public function __construct(array $entries = [])
+    public function __construct(array $entries = [], Transformable $owner = null)
     {
+        $this->owner   = $owner;
         $this->entries = $entries;
     }
 

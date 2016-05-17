@@ -12,7 +12,7 @@ abstract class AbstractSource implements Transformable
 
     public function __construct(array $options = [])
     {
-        $this->options = new Container($options);
+        $this->options = new Container($options, $this);
     }
 
     public function __invoke()
@@ -20,7 +20,8 @@ abstract class AbstractSource implements Transformable
         return $this->get();
     }
 
-    public function options() {
+    public function options()
+    {
         return $this->options;
     }
 
