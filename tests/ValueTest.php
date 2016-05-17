@@ -2,31 +2,23 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Source\AbstractSource;
+use Filchos\Imago\Source\Value;
 
-class ScourceTest extends PHPUnit_Framework_TestCase
+class ValueTestTest extends PHPUnit_Framework_TestCase
 {
 
     public function testClass()
     {
-        $imago = new JokkmokkSource;
+        $imago = new Value('Åsele');
         $this->assertInstanceOf('Filchos\\Imago\\Source\\AbstractSource', $imago);
+        $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $imago);
     }
 
     public function testGet()
     {
-        $imago = new JokkmokkSource;
-        $this->assertSame('Jokkmokk', $imago->get());
-        $this->assertSame('Jokkmokk', $imago());
-    }
-
-}
-
-class JokkmokkSource extends AbstractSource {
-
-    function get()
-    {
-        return 'Jokkmokk';
+        $imago = new Value(['Åsele', 'Fredrika']);
+        $this->assertSame(['Åsele', 'Fredrika'], $imago->get());
+        $this->assertSame(['Åsele', 'Fredrika'], $imago());
     }
 
 }
