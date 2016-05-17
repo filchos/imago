@@ -9,13 +9,13 @@ abstract class AbstractSource implements Transformable
 
     protected $options;
 
-    function __construct(array $options = [])
+    public function __construct(array $options = [])
     {
         $this->options = $options;
     }
 
-    function __invoke() {
+    public function __invoke()
+    {
         return $this->get();
     }
-
 }

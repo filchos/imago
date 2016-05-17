@@ -5,6 +5,5 @@ namespace Filchos\Imago;
 interface Transformable
 {
 
-    function get();
-
+    public function get();
 }

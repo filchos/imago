@@ -19,14 +19,13 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Jokkmokk', $imago->get());
         $this->assertSame('Jokkmokk', $imago());
     }
-
 }
 
-class JokkmokkSource extends AbstractSource {
+class JokkmokkSource extends AbstractSource
+{
 
-    function get()
+    public function get()
     {
         return 'Jokkmokk';
     }
-
 }

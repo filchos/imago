@@ -20,5 +20,4 @@ class ValueTestTest extends PHPUnit_Framework_TestCase
         $this->assertSame(['Åsele', 'Fredrika'], $imago->get());
         $this->assertSame(['Åsele', 'Fredrika'], $imago());
     }
-
 }
