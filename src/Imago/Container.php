@@ -14,6 +14,11 @@ class Container
         $this->entries = $entries;
     }
 
+    public function owner()
+    {
+        return $this->owner;
+    }
+
     public function all()
     {
         return $this->entries;

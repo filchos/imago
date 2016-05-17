@@ -20,52 +20,16 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Jokkmokk', $imago());
     }
 
-    public function testGetOptions()
+    public function testOptionContainer()
     {
-        $imago = $this->getOptionImago();
+        $imago   = new OptionSource(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
+        $options = $imago->options();
+        $this->assertInstanceOf('Filchos\\Imago\\Container', $options);
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten'];
         $this->assertSame($should, $imago->options()->all());
+        $this->assertSame($imago, $imago->options()->owner());
     }
 
-    public function testGetOption()
-    {
-        $imago = $this->getOptionImago();
-        $this->assertSame('Skellefteå', $imago->options()->get('city'));
-        $this->assertSame('Västerbotten', $imago->options()->get('region'));
-        $this->assertNull($imago->options()->get('country'));
-        $this->assertSame('Sverige', $imago->options()->get('country', 'Sverige'));
-    }
-
-    public function testHasOption()
-    {
-        $imago = $this->getOptionImago();
-        $this->assertTrue($imago->options()->has('city'));
-        $this->assertFalse($imago->options()->has('country'));
-    }
-
-    public function testSetOption()
-    {
-        $imago = $this->getOptionImago();
-        $imago->options()->set('country', 'Sverige');
-        $this->assertTrue($imago->options()->has('country'));
-        $this->assertSame('Sverige', $imago->options()->get('country'));
-        $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten', 'country' => 'Sverige'];
-        $this->assertSame($should, $imago->options()->all());
-    }
-
-    public function testDeleteOption()
-    {
-        $imago = $this->getOptionImago();
-        $imago->options()->delete('region');
-        $this->assertFalse($imago->options()->has('region'));
-        $should = ['city' => 'Skellefteå'];
-        $this->assertSame($should, $imago->options()->all());
-    }
-
-    protected function getOptionImago()
-    {
-        return new OptionSource(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
-    }
 }
 
 class JokkmokkSource extends AbstractSource
