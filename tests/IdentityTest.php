@@ -18,22 +18,9 @@ class IdentityTest extends PHPUnit_Framework_TestCase
 
     public function testGet()
     {
-        $imago = new Value('Abisko');
+        $random = rand();
+        $imago = new Value($random);
         $imago = new Identity($imago);
-        $this->assertSame('Abisko', $imago->get());
-    }
-
-    public function testInner()
-    {
-        $imago = new Value('Abisko');
-        $imago = new Identity($imago);
-        $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $imago->getInner());
-    }
-
-    public function testOptionsThroughConstructor()
-    {
-        $imago = new Value('Abisko');
-        $imago = new Identity($imago, ['decorator' => true]);
-        $this->assertTrue($imago->getOption('decorator'));
+        $this->assertSame($random, $imago->get());
     }
 }

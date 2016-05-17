@@ -19,4 +19,9 @@ abstract class AbstractSource implements Transformable
     {
         return $this->get();
     }
+
+    public function to($decoratorClassName, array $options = [])
+    {
+        return new $decoratorClassName($this, $options);
+    }
 }
