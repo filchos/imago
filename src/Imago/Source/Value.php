@@ -12,6 +12,6 @@ class Value extends AbstractSource
 
     public function get()
     {
-        return $this->options['value'];
+        return $this->getOption('value');
     }
 }
