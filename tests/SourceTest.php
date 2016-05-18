@@ -71,5 +71,6 @@ class MetaSource extends AbstractSource
     public function get()
     {
         $this->meta()->set('inited', true);
+        return null;
     }
 }
