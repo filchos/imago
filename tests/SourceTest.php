@@ -45,7 +45,6 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $this->assertSame($should, $meta->all());
         $this->assertTrue($meta->get('inited'));
     }
-
 }
 
 class JokkmokkSource extends AbstractSource
