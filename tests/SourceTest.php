@@ -26,8 +26,24 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $options = $imago->options();
         $this->assertInstanceOf('Filchos\\Imago\\Container', $options);
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten'];
-        $this->assertSame($should, $imago->options()->all());
-        $this->assertSame($imago, $imago->options()->owner());
+        $this->assertSame($should, $options->all());
+        $this->assertSame('Skellefteå', $options->get('city'));
+        $this->assertSame($imago, $options->owner());
+    }
+
+    public function testMetaContainer()
+    {
+        $imago = new MetaSource;
+        $meta  = $imago->meta();
+        $this->assertInstanceOf('Filchos\\Imago\\Container', $meta);
+        $this->assertSame([], $meta->all());
+        $this->assertSame($imago, $meta->owner());
+
+        $imago->get();
+        $meta  = $imago->meta();
+        $should = ['inited' => true];
+        $this->assertSame($should, $meta->all());
+        $this->assertTrue($meta->get('inited'));
     }
 
 }
@@ -47,5 +63,14 @@ class OptionSource extends AbstractSource
     public function get()
     {
         return null;
+    }
+}
+
+class MetaSource extends AbstractSource
+{
+
+    public function get()
+    {
+        $this->meta()->set('inited', true);
     }
 }
