@@ -43,6 +43,12 @@ class Container
         $this->entries[$name] = $value;
     }
 
+    public function setUnlessExists($name, $value) {
+        if (!$this->has($name)) {
+            $this->set($name, $value);
+        }
+    }
+
     public function delete($name)
     {
         unset($this->entries[$name]);

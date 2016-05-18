@@ -47,6 +47,15 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertSame($should, $container->all());
     }
 
+    public function testSetUnlessExists()
+    {
+        $container = $this->getContainer();
+        $container->setUnlessExists('country', 'Sverige');
+        $this->assertSame('Sverige', $container->get('country'));
+        $container->setUnlessExists('region', 'Norra Norrland');
+        $this->assertSame('Västerbotten', $container->get('region'));
+    }
+
     public function testDelete()
     {
         $container = $this->getContainer();
