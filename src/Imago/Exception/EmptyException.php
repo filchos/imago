@@ -2,6 +2,6 @@
 
 namespace Filchos\Imago\Exception;
 
-class FormatException extends Exception
+class EmptyException extends Exception
 {
 }

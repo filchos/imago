@@ -9,8 +9,7 @@ class ExceptionCatcherTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @expectedException Filchos\Imago\Exception\FormatException
-     * @expectedExceptionMessage invalid json
+     * @expectedException Filchos\Imago\Exception\JsonException
      */
     public function testWithout()
     {
@@ -29,8 +28,8 @@ class ExceptionCatcherTest extends PHPUnit_Framework_TestCase
         $this->assertNull($imago->get());
         $this->assertTrue($imago->meta()->has('exception'));
         $exception = $imago->meta()->get('exception');
-        $this->assertInstanceOf('Filchos\\Imago\\Exception\\FormatException', $exception);
-        $this->assertSame('invalid json', $exception->getMessage());
+        $this->assertInstanceOf('Filchos\\Imago\\Exception\\JsonException', $exception);
+        $this->assertSame('Syntax error', $exception->getMessage());
     }
 
     public function testWithAlternative()

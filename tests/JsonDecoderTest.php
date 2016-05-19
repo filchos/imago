@@ -18,8 +18,19 @@ class JsonDecoderTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Filchos\Imago\Exception\FormatException
-     * @expectedExceptionMessage invalid json
+     * @expectedException Filchos\Imago\Exception\EmptyException
+     */
+    public function testEmpty()
+    {
+        $json  = '';
+        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\JsonDecoder');
+        $imago->get();
+    }
+
+    /**
+     * @expectedException Filchos\Imago\Exception\JsonException
+     * @expectedExceptionCode 4
+     * @expectedExceptionMessage Syntax error
      */
     public function testInvalid()
     {
