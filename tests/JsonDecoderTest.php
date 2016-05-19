@@ -48,5 +48,4 @@ class JsonDecoderTest extends PHPUnit_Framework_TestCase
         $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\JsonDecoder');
         $imago->get();
     }
-
 }

@@ -31,5 +31,4 @@ class DomToSimpleXmlTest extends PHPUnit_Framework_TestCase
         $imago = (new Value($xml))->to('Filchos\\Imago\\Transformer\\DomToSimpleXml');
         $imago->get();
     }
-
 }
