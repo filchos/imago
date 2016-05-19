@@ -1,6 +1,7 @@
 <?php
 
 if (!function_exists('json_last_error_msg'))
+{
 
     function json_last_error_msg()
     {

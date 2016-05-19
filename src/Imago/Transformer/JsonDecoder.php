@@ -6,7 +6,7 @@ use Filchos\Imago\Exception\EmptyException;
 use Filchos\Imago\Exception\JsonException;
 
 if (!function_exists('json_last_error_msg')) {
-    #require_once __DIR__ . '/../../polyfills/json_last_error_msg.php';
+    require_once __DIR__ . '/../../polyfills/json_last_error_msg.php';
 }
 
 class JsonDecoder extends AbstractTransformer
