@@ -25,5 +25,4 @@ class JsonDecoder extends AbstractTransformer
 
         return $output;
     }
-
 }

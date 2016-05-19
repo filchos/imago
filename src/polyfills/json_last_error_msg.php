@@ -1,8 +1,6 @@
 <?php
 
-if (!function_exists('json_last_error_msg'))
-{
-
+if (!function_exists('json_last_error_msg')) {
     function json_last_error_msg()
     {
         switch (json_last_error()) {
@@ -22,5 +20,4 @@ if (!function_exists('json_last_error_msg'))
                 return 'Unknown error';
         }
     }
-
 }
