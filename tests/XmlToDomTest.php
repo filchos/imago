@@ -10,8 +10,8 @@ class XmlToDomTest extends PHPUnit_Framework_TestCase
 
     public function testGet()
     {
-        $json  = '<root><item>one</item><item>two</item><item>three</item></root>';
-        $imago = new Value($json);
+        $xml   = '<root><item>one</item><item>two</item><item>three</item></root>';
+        $imago = new Value($xml);
         $imago = new XmlToDom($imago);
         $doc   = $imago->get();
         $this->assertInstanceOf('DomDocument', $doc);
@@ -24,8 +24,8 @@ class XmlToDomTest extends PHPUnit_Framework_TestCase
      */
     public function testEmpty()
     {
-        $json  = '';
-        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\XmlToDom');
+        $xml   = '';
+        $imago = (new Value($xml))->to('Filchos\\Imago\\Transformer\\XmlToDom');
         $imago->get();
     }
 
@@ -35,8 +35,8 @@ class XmlToDomTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalid76()
     {
-        $json  = '<open></close>';
-        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\XmlToDom');
+        $xml   = '<open></close>';
+        $imago = (new Value($xml))->to('Filchos\\Imago\\Transformer\\XmlToDom');
         $imago->get();
     }
 
@@ -46,8 +46,8 @@ class XmlToDomTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalid77()
     {
-        $json  = '<two><open-tags>';
-        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\XmlToDom');
+        $xml   = '<two><open-tags>';
+        $imago = (new Value($xml))->to('Filchos\\Imago\\Transformer\\XmlToDom');
         $imago->get();
     }
 
@@ -56,8 +56,8 @@ class XmlToDomTest extends PHPUnit_Framework_TestCase
      */
     public function testWrongInputType()
     {
-        $json = ['not', 'a', 'string'];
-        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\XmlToDom');
+        $xml   = ['not', 'a', 'string'];
+        $imago = (new Value($xml))->to('Filchos\\Imago\\Transformer\\XmlToDom');
         $imago->get();
     }
 
