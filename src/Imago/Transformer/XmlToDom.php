@@ -9,6 +9,11 @@ use Filchos\Imago\Exception\DomException;
 class XmlToDom extends AbstractTransformer
 {
 
+    protected function accept($input)
+    {
+        return is_string($input);
+    }
+
     protected function transform($input)
     {
         if (is_null($input) || $input === '') {

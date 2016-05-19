@@ -12,6 +12,11 @@ if (!function_exists('json_last_error_msg')) {
 class JsonDecoder extends AbstractTransformer
 {
 
+    protected function accept($input)
+    {
+        return is_string($input);
+    }
+
     protected function transform($input)
     {
         if ($input === '') {

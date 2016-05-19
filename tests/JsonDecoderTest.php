@@ -38,4 +38,15 @@ class JsonDecoderTest extends PHPUnit_Framework_TestCase
         $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\JsonDecoder');
         $imago->get();
     }
+
+    /**
+     * @expectedException Filchos\Imago\Exception\AcceptException
+     */
+    public function testWrongInputType()
+    {
+        $json = ['not', 'a', 'string'];
+        $imago = (new Value($json))->to('Filchos\\Imago\\Transformer\\JsonDecoder');
+        $imago->get();
+    }
+
 }

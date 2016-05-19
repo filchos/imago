@@ -2,6 +2,7 @@
 
 namespace Filchos\Imago\Transformer;
 
+use Filchos\Imago\Exception\AcceptException;
 use Filchos\Imago\Source\AbstractSource;
 use Filchos\Imago\Transformable;
 
@@ -23,7 +24,16 @@ abstract class AbstractTransformer extends AbstractSource
 
     public function get()
     {
-        return $this->transform($this->inner()->get());
+        $input = $this->inner()->get();
+        if (!$this->accept($input)) {
+            throw new AcceptException;
+        }
+        return $this->transform($input);
+    }
+
+    protected function accept($input)
+    {
+        return true;
     }
 
     abstract protected function transform($mixed);
