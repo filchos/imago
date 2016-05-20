@@ -2,7 +2,7 @@
 
 namespace Filchos\Imago;
 
-class Container
+class Container extends AbstractContainer
 {
 
     protected $owner;
@@ -24,34 +24,23 @@ class Container
         return $this->entries;
     }
 
-    public function get($name, $default = null)
+    public function offsetExists($key)
     {
-        if ($this->has($name)) {
-            return $this->entries[$name];
-        } else {
-            return $default;
-        }
+        return isset($this->entries[$key]);
     }
 
-    public function has($name)
+    public function offsetSet($key, $value)
     {
-        return isset($this->entries[$name]);
+        $this->entries[$key] = $value;
     }
 
-    public function set($name, $value)
+    public function offsetGet($key)
     {
-        $this->entries[$name] = $value;
+        return $this->entries[$key];
     }
 
-    public function setUnlessExists($name, $value)
+    public function offsetUnset($key)
     {
-        if (!$this->has($name)) {
-            $this->set($name, $value);
-        }
-    }
-
-    public function delete($name)
-    {
-        unset($this->entries[$name]);
+        unset($this->entries[$key]);
     }
 }
