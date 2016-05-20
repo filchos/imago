@@ -13,7 +13,7 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
     {
         $imago1 = new Value('Pajala');
         $imago2 = new ExceptionThrower;
-        $imago  = new FirstOf([$imago1, $imago2]);
+        $imago  = (new FirstOf($imago1))->otherwise($imago2);
         $value  = $imago->get();
         $this->assertSame('Pajala', $value);
     }
@@ -22,7 +22,7 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
     {
         $imago1 = new ExceptionThrower;
         $imago2 = new Value('Pajala');
-        $imago  = new FirstOf([$imago1, $imago2]);
+        $imago  = (new FirstOf($imago1))->otherwise($imago2);
         $value  = $imago->get();
         $this->assertSame('Pajala', $value);
     }
@@ -31,7 +31,7 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
     {
         $imago1 = new ExceptionThrower;
         $imago2 = new Value('Pajala');
-        $imago  = new FirstOf([$imago1, $imago2]);
+        $imago  = (new FirstOf($imago1))->otherwise($imago2);
         $this->assertNull($imago->inner());
         $imago->get();
         $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $imago->inner());
@@ -42,7 +42,7 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
     {
         $imago1 = new Value('Skellefteå');
         $imago2 = new Value('Umeå');
-        $imago  = new FirstOf([$imago1, $imago2]);
+        $imago  = (new FirstOf($imago1))->otherwise($imago2);
         $value  = $imago->get();
         $this->assertSame('Skellefteå', $value);
     }
@@ -54,18 +54,8 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
     {
         $imago1 = new ExceptionThrower;
         $imago2 = new ExceptionThrower;
-        $imago  = new FirstOf([$imago1, $imago2]);
-        $value  = $imago->get();
-    }
-
-    /**
-     * @expectedException Filchos\Imago\Exception\NotTransformableException
-     */
-    public function testInvalidTransformable()
-    {
-        $imago1 = -1;
-        $imago  = new FirstOf([$imago1]);
-        $value  = $imago->get();
+        $imago  = (new FirstOf($imago1))->otherwise($imago2);
+        $imago->get();
     }
 }
 
