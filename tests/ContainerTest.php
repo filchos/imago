@@ -65,6 +65,35 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertSame($should, $container->all());
     }
 
+    public function testChaining()
+    {
+        $container = new LocalContainer;
+        $container = $container->set('city', 'Skellefteå')->set('region', 'Västerbotten');
+        $container->set('country', 'Sverige');
+        $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten', 'country' => 'Sverige'];
+        $this->assertSame($should, $container->all());
+        $container->delete('city')->delete('country');
+        $should = ['region' => 'Västerbotten',];
+        $this->assertSame($should, $container->all());
+    }
+
+    public function testArrayAccess()
+    {
+        $container = new LocalContainer;
+
+        $container['city'] = 'Skellefteå';
+        $this->assertSame('Skellefteå', $container->get('city'));
+
+        $container->set('country', 'Sverige');
+        $this->assertSame('Sverige', $container['country']);
+        $this->assertTrue(isset($container['country']));
+        $this->assertTrue(isset($container['city']));
+
+        $container->delete('city');
+        unset($container['country']);
+        $this->assertSame([], $container->all());
+    }
+
     protected function getContainer()
     {
         return new LocalContainer(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
