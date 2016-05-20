@@ -10,10 +10,10 @@ class JsonDecoderTest extends PHPUnit_Framework_TestCase
 
     public function testGet()
     {
-        $json  = json_encode(['city' => 'Gällivare']);
+        $json  = json_encode(['city' => 'Pajala']);
         $imago = new Value($json);
         $imago = new JsonDecoder($imago);
-        $should = (object) ['city' => 'Gällivare'];
+        $should = (object) ['city' => 'Pajala'];
         $this->assertEquals($should, $imago->get());
     }
 
