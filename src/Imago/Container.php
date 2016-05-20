@@ -5,18 +5,11 @@ namespace Filchos\Imago;
 class Container extends AbstractContainer
 {
 
-    protected $owner;
     protected $entries;
 
-    public function __construct(array $entries = [], Transformable $owner = null)
+    public function __construct(array $entries = [])
     {
-        $this->owner   = $owner;
         $this->entries = $entries;
-    }
-
-    public function owner()
-    {
-        return $this->owner;
     }
 
     public function all()

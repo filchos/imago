@@ -13,8 +13,8 @@ abstract class AbstractSource implements Transformable
 
     public function __construct(array $options = [])
     {
-        $this->options = new Container($options, $this);
-        $this->meta    = new Container([],       $this);
+        $this->options = new Container($options);
+        $this->meta    = new Container([]);
     }
 
     public function __invoke()

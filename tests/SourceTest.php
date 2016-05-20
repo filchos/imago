@@ -28,7 +28,6 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten'];
         $this->assertSame($should, $options->all());
         $this->assertSame('Skellefteå', $options->get('city'));
-        $this->assertSame($imago, $options->owner());
     }
 
     public function testMetaContainer()
@@ -37,7 +36,6 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $meta  = $imago->meta();
         $this->assertInstanceOf('Filchos\\Imago\\Container', $meta);
         $this->assertSame([], $meta->all());
-        $this->assertSame($imago, $meta->owner());
 
         $imago->get();
         $meta  = $imago->meta();

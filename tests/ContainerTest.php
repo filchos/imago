@@ -65,14 +65,6 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertSame($should, $container->all());
     }
 
-    public function testOwner()
-    {
-        $value = new Value('Skellefteå');
-        $container = new Container(['region' => 'Västerbotten'], $value);
-        $this->assertInstanceOf('Filchos\\Imago\\Container', $container);
-        $this->assertInstanceOf('Filchos\\Imago\\Source\\Value', $container->owner());
-    }
-
     protected function getContainer()
     {
         return new Container(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
