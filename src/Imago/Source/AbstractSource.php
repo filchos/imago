@@ -2,7 +2,7 @@
 
 namespace Filchos\Imago\Source;
 
-use Filchos\Imago\Container;
+use Filchos\Imago\Container\LocalContainer;
 use Filchos\Imago\Transformable;
 
 abstract class AbstractSource implements Transformable
@@ -13,8 +13,8 @@ abstract class AbstractSource implements Transformable
 
     public function __construct(array $options = [])
     {
-        $this->options = new Container($options);
-        $this->meta    = new Container([]);
+        $this->options = new LocalContainer($options);
+        $this->meta    = new LocalContainer([]);
     }
 
     public function __invoke()

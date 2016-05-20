@@ -1,8 +1,8 @@
 <?php
 
-namespace Filchos\Imago;
+namespace Filchos\Imago\Container;
 
-class Container extends AbstractContainer
+class LocalContainer extends AbstractContainer
 {
 
     protected $entries;

@@ -1,9 +1,8 @@
 <?php
 
-namespace Filchos\Imago;
+namespace Filchos\Imago\Container;
 
 use ArrayAccess;
-use Filchos\Imago\ContainerInterface;
 
 abstract class AbstractContainer implements ArrayAccess, ContainerInterface
 {

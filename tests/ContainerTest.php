@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Container;
+use Filchos\Imago\Container\LocalContainer;
 use Filchos\Imago\Source\Value;
 
 class ContainerTest extends PHPUnit_Framework_TestCase
@@ -10,8 +10,8 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        $container = new Container;
-        $this->assertInstanceOf('Filchos\\Imago\\Container', $container);
+        $container = new LocalContainer;
+        $this->assertInstanceOf('Filchos\\Imago\\Container\\LocalContainer', $container);
     }
 
     public function testAll()
@@ -67,6 +67,6 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
     protected function getContainer()
     {
-        return new Container(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
+        return new LocalContainer(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
     }
 }

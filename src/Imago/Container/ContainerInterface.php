@@ -1,6 +1,6 @@
 <?php
 
-namespace Filchos\Imago;
+namespace Filchos\Imago\Container;
 
 interface ContainerInterface
 {
