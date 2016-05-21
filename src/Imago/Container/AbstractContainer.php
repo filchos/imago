@@ -8,10 +8,10 @@ use Filchos\Imago\Exception\InvalidKeyException;
 abstract class AbstractContainer implements ArrayAccess, ContainerInterface
 {
 
-    public function get($name, $default = null)
+    public function get($key, $default = null)
     {
-        if (isset($this[$name])) {
-            return $this[$name];
+        if (isset($this[$key])) {
+            return $this[$key];
         } elseif (func_num_args() > 1) {
             return $default;
         } else {
@@ -19,28 +19,28 @@ abstract class AbstractContainer implements ArrayAccess, ContainerInterface
         }
     }
 
-    public function has($name)
+    public function has($key)
     {
-        return isset($this[$name]);
+        return isset($this[$key]);
     }
 
-    public function set($name, $value)
+    public function set($key, $value)
     {
-        $this[$name] = $value;
+        $this[$key] = $value;
         return $this;
     }
 
-    public function setUnlessExists($name, $value)
+    public function setUnlessExists($key, $value)
     {
-        if (!$this->has($name)) {
-            $this->set($name, $value);
+        if (!$this->has($key)) {
+            $this->set($key, $value);
         }
         return $this;
     }
 
-    public function delete($name)
+    public function delete($key)
     {
-        unset($this[$name]);
+        unset($this[$key]);
         return $this;
     }
 }

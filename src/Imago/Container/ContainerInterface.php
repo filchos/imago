@@ -5,11 +5,11 @@ namespace Filchos\Imago\Container;
 interface ContainerInterface
 {
 
-    public function get($name, $default = null);
+    public function get($key, $default = null);
 
-    public function has($name);
+    public function has($key);
 
-    public function set($name, $value);
+    public function set($key, $value);
 
-    public function delete($name);
+    public function delete($key);
 }
