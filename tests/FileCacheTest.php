@@ -21,7 +21,7 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_writable($this->getCachePath()));
     }
 
-    public function testRandom()
+    public function testGet()
     {
         $this->cache->set('city', 'Vännäs');
         $this->assertTrue($this->cache->has('city'));
@@ -42,6 +42,8 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
     {
         $this->cache->set('city', 'Vindeln');
         $this->cache->set('region', 'Västerbotten');
+        $this->assertSame('Vindeln', $this->cache->get('city'));
+        $this->assertSame('Västerbotten', $this->cache->get('region'));
         $this->cache->flush();
         $this->assertFalse($this->cache->has('city'));
         $this->assertFalse($this->cache->has('region'));
