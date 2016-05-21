@@ -50,6 +50,18 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException Filchos\Imago\Exception\InvalidKeyException
      */
+    public function testExpired()
+    {
+        $this->cache->set('city', 'Murjek');
+        $path = $this->getCachePath() . md5('city') . '.cache';
+        touch($path, time() - 1000000);
+        clearstatcache();
+        $this->cache->get('city');
+    }
+
+    /**
+     * @expectedException Filchos\Imago\Exception\InvalidKeyException
+     */
     public function testReadInvalid()
     {
         $valid = $this->cache->get('landscape');
