@@ -3,16 +3,19 @@
 namespace Filchos\Imago\Container;
 
 use ArrayAccess;
+use Filchos\Imago\Exception\InvalidKeyException;
 
 abstract class AbstractContainer implements ArrayAccess, ContainerInterface
 {
 
     public function get($name, $default = null)
     {
-        if ($this->has($name)) {
+        if (isset($this[$name])) {
             return $this[$name];
-        } else {
+        } elseif (func_num_args() > 1) {
             return $default;
+        } else {
+            throw new InvalidKeyException;
         }
     }
 

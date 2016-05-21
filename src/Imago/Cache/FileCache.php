@@ -3,7 +3,6 @@
 namespace Filchos\Imago\Cache;
 
 use Filchos\Imago\Container\AbstractContainer;
-use Filchos\Imago\Exception\InvalidKeyException;
 
 class FileCache extends AbstractContainer
 {
@@ -25,15 +24,6 @@ class FileCache extends AbstractContainer
         $this->codec = $codec;
     }
 
-    public function get($name, $default = null)
-    {
-        if (func_num_args() > 1) {
-            return parent::get($name, $default);
-        } else {
-            return $this[$name];
-        }
-    }
-
     public function offsetExists($key)
     {
         $path = $this->getPath($key);
@@ -48,12 +38,8 @@ class FileCache extends AbstractContainer
 
     public function offsetGet($key)
     {
-        if (isset($this[$key])) {
-            $path = $this->getPath($key);
-            return $this->codec->decode(file_get_contents($path));
-        } else {
-            throw new InvalidKeyException;
-        }
+        $path = $this->getPath($key);
+        return $this->codec->decode(file_get_contents($path));
     }
 
     public function offsetUnset($key)

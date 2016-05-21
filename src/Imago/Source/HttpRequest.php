@@ -35,7 +35,7 @@ class HttpRequest extends AbstractSource
         curl_setopt($ch, CURLOPT_HEADER,         true);
         curl_setopt($ch, CURLOPT_TIMEOUT,        $options->get('timeout'));
 
-        $headers = $options->get('headers');
+        $headers = $options->get('headers', null);
         if ($headers && is_array($headers) and count($headers)) {
             $requestHeaders = [];
             foreach ($headers as $index => $header) {

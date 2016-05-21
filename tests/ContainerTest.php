@@ -26,8 +26,17 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $container = $this->getContainer();
         $this->assertSame('Skellefteå', $container->get('city'));
         $this->assertSame('Västerbotten', $container->get('region'));
-        $this->assertNull($container->get('country'));
+        $this->assertNull($container->get('country', null));
         $this->assertSame('Sverige', $container->get('country', 'Sverige'));
+    }
+
+    /**
+     * @expectedException Filchos\Imago\Exception\InvalidKeyException
+     */
+    public function testGetInvalid()
+    {
+        $container = $this->getContainer();
+        $container->get('country');
     }
 
     public function testHas()
