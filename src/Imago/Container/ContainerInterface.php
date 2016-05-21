@@ -5,8 +5,6 @@ namespace Filchos\Imago\Container;
 interface ContainerInterface
 {
 
-    public function all();
-
     public function get($name, $default = null);
 
     public function has($name);
