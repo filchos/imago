@@ -19,7 +19,7 @@ class LocalContainer extends AbstractContainer
 
     public function offsetExists($key)
     {
-        return isset($this->entries[$key]);
+        return array_key_exists($key, $this->entries);
     }
 
     public function offsetSet($key, $value)
