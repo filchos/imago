@@ -31,10 +31,16 @@ abstract class AbstractTransformer extends AbstractSource
         return $this->transform($input);
     }
 
+    public function scent()
+    {
+        return $this->inner()->scent() . "\n" . parent::scent();
+    }
+
     protected function accept($input)
     {
         return true;
     }
 
     abstract protected function transform($mixed);
+
 }
