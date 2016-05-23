@@ -31,4 +31,10 @@ class ScentTest extends PHPUnit_Framework_TestCase
         $this->assertSame($should, $imago->scent());
     }
 
+    public function testOwnScent()
+    {
+        $imago  = new OwnScent();
+        $should = 'OwnScent({"ownScent":true})';
+        $this->assertSame($should, $imago->scent());
+    }
 }

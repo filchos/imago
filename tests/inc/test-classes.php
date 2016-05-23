@@ -44,6 +44,20 @@ class OptionSource extends AbstractSource
     }
 }
 
+class OwnScent extends AbstractSource
+{
+
+    public function get()
+    {
+        return null;
+    }
+
+    protected function getScentParameters()
+    {
+        return ['ownScent' => true];
+    }
+}
+
 class Repeater extends AbstractTransformer
 {
 
