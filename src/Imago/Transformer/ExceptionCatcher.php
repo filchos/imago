@@ -2,7 +2,7 @@
 
 namespace Filchos\Imago\Transformer;
 
-use Exception;
+use Exception as RootException;
 
 class ExceptionCatcher extends AbstractTransformer
 {
@@ -11,7 +11,7 @@ class ExceptionCatcher extends AbstractTransformer
     {
         try {
             $innerData = $this->inner()->get();
-        } catch (Exception $e) {
+        } catch (RootException $e) {
             $inputData = $this->options()->get('onError', null);
             if (is_callable($inputData)) {
                 $inputData = $inputData();

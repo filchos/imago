@@ -2,8 +2,8 @@
 
 namespace Filchos\Imago\Exception;
 
-use Exception as BaseException;
+use Exception as RootException;
 
-class Exception extends BaseException
+class Exception extends RootException
 {
 }
