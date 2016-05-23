@@ -35,6 +35,31 @@ class MetaSource extends AbstractSource
     }
 }
 
+class OnceSource extends AbstractSource
+{
+
+    static $hit = false;
+
+    public function get()
+    {
+        if (self::$hit) {
+            throw new OnceSourceException;
+        } else {
+            self::$hit = true;
+            return 1;
+        }
+    }
+
+    public function reset()
+    {
+        self::$hit = false;
+    }
+}
+
+class OnceSourceException extends Exception
+{
+}
+
 class OptionSource extends AbstractSource
 {
 
