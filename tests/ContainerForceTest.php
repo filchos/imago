@@ -17,7 +17,7 @@ class ContainerForceTest extends PHPUnit_Framework_TestCase
             ->set('inhabitants', 303)
             ->force('city')
             ->force('region', '/^(Väster|Norr)botten$/')
-            ->force('inhabitants', function($value) { return is_int($value); } )
+            ->force('inhabitants', function ($value) { return is_int($value); })
         ;
     }
 
@@ -51,8 +51,7 @@ class ContainerForceTest extends PHPUnit_Framework_TestCase
         $container = new LocalContainer;
         $container
             ->set('inhabitants', 'not so many')
-            ->force('inhabitants', function($value) { return is_int($value); } )
+            ->force('inhabitants', function ($value) { return is_int($value); })
         ;
     }
-
 }

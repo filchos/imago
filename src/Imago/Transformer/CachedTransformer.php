@@ -15,8 +15,8 @@ class CachedTransformer extends AbstractTransformer
         $options = $this->options();
         $options
             ->setUnlessExists('key', md5($this->inner()->scent()))
-            ->force('cache', function($item) {return is_a($item, 'Filchos\\Imago\\Cache\\CacheInterface'); })
-            ->force('key', function($item) { return is_string($item) && strlen($item) <= 32; })
+            ->force('cache', function ($item) {return is_a($item, 'Filchos\\Imago\\Cache\\CacheInterface'); })
+            ->force('key', function ($item) { return is_string($item) && strlen($item) <= 32; })
         ;
     }
 

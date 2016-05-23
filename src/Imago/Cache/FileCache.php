@@ -10,9 +10,9 @@ class FileCache extends AbstractCache
         parent::__construct($options);
         $this->options
             ->setUnlessExists('codec', new PhpSerializeCodec())
-            ->force('codec', function($item) { return is_a($item, 'Filchos\\Imago\\Cache\\CodecInterface'); })
+            ->force('codec', function ($item) { return is_a($item, 'Filchos\\Imago\\Cache\\CodecInterface'); })
             ->force('path')
-            ->force('ttl', function($number) { return is_int($number) && $number > 0; })
+            ->force('ttl', function ($number) { return is_int($number) && $number > 0; })
         ;
         $this->options['path'] = rtrim($this->options['path'], '/') . '/';
     }
