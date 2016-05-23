@@ -103,6 +103,13 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertSame([], $container->all());
     }
 
+    public function testAllowNull()
+    {
+        $container = new LocalContainer;
+        $container->set('nothing', null);
+        $this->assertTrue($container->has('nothing'));
+    }
+
     protected function getContainer()
     {
         return new LocalContainer(['city' => 'Skellefteå', 'region' => 'Västerbotten']);

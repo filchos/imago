@@ -3,7 +3,6 @@
 namespace Filchos\Imago\Transformer;
 
 use Filchos\Imago\Cache\FileCache;
-use Filchos\Imago\Cache\PhpSerializeCodec;
 use Filchos\Imago\Transformable;
 
 class FileCachedTransformer extends AbstractTransformer
@@ -15,7 +14,7 @@ class FileCachedTransformer extends AbstractTransformer
 
         $options = $this->options();
         $options
-            ->setUnlessExists('codec', new PhpSerializeCodec)
+            ->setUnlessExists('codec', null)
             ->setUnlessExists('key', md5($this->inner()->scent()))
             ->force('path')
             ->setUnlessExists('ttl', 300)
