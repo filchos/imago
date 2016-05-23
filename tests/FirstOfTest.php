@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Source\AbstractSource;
 use Filchos\Imago\Source\Value;
 use Filchos\Imago\Transformer\FirstOf;
 
@@ -56,18 +55,5 @@ class FirstOfTest extends PHPUnit_Framework_TestCase
         $imago2 = new ExceptionThrower;
         $imago  = (new FirstOf($imago1))->otherwise($imago2);
         $imago->get();
-    }
-}
-
-class ExceptionThrowException extends Exception
-{
-}
-
-class ExceptionThrower extends AbstractSource
-{
-
-    public function get()
-    {
-        throw new ExceptionThrowException;
     }
 }

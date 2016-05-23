@@ -2,8 +2,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Source\AbstractSource;
-
 class ScourceTest extends PHPUnit_Framework_TestCase
 {
 
@@ -42,33 +40,5 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $should = ['inited' => true];
         $this->assertSame($should, $meta->all());
         $this->assertTrue($meta->get('inited'));
-    }
-}
-
-class JokkmokkSource extends AbstractSource
-{
-
-    public function get()
-    {
-        return 'Jokkmokk';
-    }
-}
-
-class OptionSource extends AbstractSource
-{
-
-    public function get()
-    {
-        return null;
-    }
-}
-
-class MetaSource extends AbstractSource
-{
-
-    public function get()
-    {
-        $this->meta()->set('inited', true);
-        return null;
     }
 }

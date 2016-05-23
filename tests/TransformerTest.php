@@ -3,7 +3,6 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Filchos\Imago\Source\Value;
-use Filchos\Imago\Transformer\AbstractTransformer;
 
 class TransformerTest extends PHPUnit_Framework_TestCase
 {
@@ -58,15 +57,5 @@ class TransformerTest extends PHPUnit_Framework_TestCase
         $imago->options()->set('repeat', 3);
         $this->assertSame(3, $imago->options()->get('repeat'));
         $this->assertSame('PiteåPiteåPiteå', $imago->get());
-    }
-}
-
-class Repeater extends AbstractTransformer
-{
-
-    public function transform($string)
-    {
-        $multiplier = (int) $this->options()->get('repeat', 2);
-        return str_repeat($string, $multiplier);
     }
 }

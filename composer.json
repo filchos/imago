@@ -35,6 +35,9 @@
         }
     },
     "autoload-dev":{
+        "files":[
+            "tests/inc/test-classes.php"
+        ],
         "classmap":[
             "tests"
         ]
