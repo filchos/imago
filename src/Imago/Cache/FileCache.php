@@ -2,20 +2,13 @@
 
 namespace Filchos\Imago\Cache;
 
-use Filchos\Imago\Codec\PhpSerializeCodec;
-
 class FileCache extends AbstractCache
 {
 
     public function __construct(array $args = [])
     {
         parent::__construct($args);
-        $this->options
-            ->setUnlessExists('codec', new PhpSerializeCodec())
-            ->force('codec', function ($item) { return is_a($item, 'Filchos\\Imago\\Codec\\CodecInterface'); })
-            ->force('path')
-            ->force('ttl', function ($number) { return is_int($number) && $number > 0; })
-        ;
+        $this->options->force('path');
         $this->options['path'] = rtrim($this->options['path'], '/') . '/';
     }
 
