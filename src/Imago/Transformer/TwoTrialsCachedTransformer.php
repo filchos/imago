@@ -13,7 +13,7 @@ class TwoTrialsCachedTransformer extends CachedTransformer
     {
         parent::__construct($inner, $args);
         $ttl = $this->options()->get('cache')->options()->get('ttl');
-        $this->options()->force('ttl2', function ($number) use($ttl) { return is_int($number) && $number > $ttl; });
+        $this->options()->force('ttl2', function ($number) use ($ttl) { return is_int($number) && $number > $ttl; });
     }
 
     public function get()

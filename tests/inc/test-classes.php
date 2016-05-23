@@ -11,7 +11,7 @@ class DateableFileCache extends FileCache
         $path = $this->getPath($key);
         touch($path, filemtime($path) + $offset);
         clearstatcache();
-   }
+    }
 }
 
 class ExceptionThrower extends AbstractSource
@@ -49,7 +49,7 @@ class MetaSource extends AbstractSource
 class OnceSource extends AbstractSource
 {
 
-    static $hit = false;
+    public static $hit = false;
 
     public function get()
     {

@@ -41,10 +41,9 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testFirstRules()
     {
-
         $values = [];
 
-        foreach([0, 1] as $index) {
+        foreach ([0, 1] as $index) {
             $imago = new OnceSource();
             $imago = new TwoTrialsCachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
@@ -57,10 +56,9 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testSecondFailsBecauseOfOnlyOneTrial()
     {
-
         $values = [];
 
-        foreach([0, 1] as $index) {
+        foreach ([0, 1] as $index) {
             $imago = new OnceSource();
             $imago = new CachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
@@ -71,10 +69,9 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testSecondSucceeds()
     {
-
         $values = [];
 
-        foreach([0, 1] as $index) {
+        foreach ([0, 1] as $index) {
             $imago = new OnceSource();
             $imago = new TwoTrialsCachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
@@ -88,10 +85,9 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
      */
     public function testSecondFailsDueToAncientCacheFile()
     {
-
         $values = [];
 
-        foreach([0, 1] as $index) {
+        foreach ([0, 1] as $index) {
             $imago = new OnceSource();
             $imago = new TwoTrialsCachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
@@ -99,5 +95,4 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
         }
         $this->assertSame($values[0], $values[1]);
     }
-
 }
