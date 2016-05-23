@@ -25,7 +25,7 @@ class FileCachedTransformerTest extends PHPUnit_Framework_TestCase
     public function testCache()
     {
         $values = [];
-        foreach([0,1] as $void) {
+        foreach ([0, 1] as $void) {
             $imago    = new RandomValue();
             $args     = ['path' => $this->cachePath];
             $imago    = new FileCachedTransformer($imago, $args);
@@ -33,5 +33,4 @@ class FileCachedTransformerTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals($values[0], $values[1]);
     }
-
 }

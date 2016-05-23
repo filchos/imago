@@ -11,14 +11,13 @@ class FileCachedTransformer extends AbstractTransformer
 
     public function __construct(Transformable $inner, array $args = [])
     {
-
         parent::__construct($inner, $args);
 
         $options = $this->options();
         $options
             ->setUnlessExists('codec', new PhpSerializeCodec)
             ->setUnlessExists('key', md5($this->inner()->scent()))
-            #->force('path')
+            ->force('path')
             ->setUnlessExists('ttl', 300)
         ;
 
@@ -34,7 +33,7 @@ class FileCachedTransformer extends AbstractTransformer
 
         if ($cache->has($key)) {
             $data = $cache->get($key);
-        } else
+        } else {
             $data = $this->inner()->get();
             $cache->set($key, $data);
         }

@@ -16,10 +16,8 @@ class FileReader extends AbstractSource
         if (!is_array($mixed)) {
             throw new OptionException('invalid constructor parameter');
         }
-        if (!is_array($mixed) || !isset($mixed['path'])) {
-            throw new OptionException('missing file option');
-        }
         parent::__construct($mixed);
+        $this->options()->force('path');
     }
 
     public function get()

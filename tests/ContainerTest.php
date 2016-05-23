@@ -31,7 +31,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Filchos\Imago\Exception\InvalidKeyException
+     * @expectedException Filchos\Imago\Exception\MissingKeyException
      */
     public function testGetInvalid()
     {

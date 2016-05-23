@@ -17,8 +17,8 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Filchos\Imago\Exception\OptionException
-     * @expectedExceptionMessage missing file option
+     * @expectedException Filchos\Imago\Exception\MissingKeyException
+     * @expectedExceptionMessage Missing key path
      */
     public function testMissingPath()
     {

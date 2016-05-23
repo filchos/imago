@@ -16,8 +16,11 @@ class HttpRequest extends AbstractSource
             $mixed = ['url' => $mixed];
         }
         parent::__construct($mixed);
-        $this->options()->setUnlessExists('headers', null);
-        $this->options()->setUnlessExists('timeout', self::DEFAULT_TIMEOUT);
+        $this->options()
+            ->setUnlessExists('headers', null)
+            ->setUnlessExists('timeout', self::DEFAULT_TIMEOUT)
+            ->force('url')
+        ;
     }
 
     public function get()

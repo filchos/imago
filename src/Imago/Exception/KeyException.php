@@ -2,6 +2,6 @@
 
 namespace Filchos\Imago\Exception;
 
-class InvalidKeyException extends KeyException
+class KeyException extends Exception
 {
 }
