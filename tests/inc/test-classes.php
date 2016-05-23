@@ -58,6 +58,15 @@ class OwnScent extends AbstractSource
     }
 }
 
+class RandomValue extends AbstractSource
+{
+
+    public function get()
+    {
+        return mt_rand();
+    }
+}
+
 class Repeater extends AbstractTransformer
 {
 
