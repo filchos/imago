@@ -82,6 +82,9 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
 
     protected function getOneMinuteFileCache()
     {
-        return new FileCache($this->getCachePath(), 60);
+        return new FileCache([
+            'path' => $this->getCachePath(),
+            'ttl'  => 60
+        ]);
     }
 }

@@ -5,7 +5,7 @@ namespace Filchos\Imago\Transformer;
 use Filchos\Imago\Cache\FileCache;
 use Filchos\Imago\Transformable;
 
-class FileCachedTransformer extends AbstractTransformer
+class CachedTransformer extends AbstractTransformer
 {
 
     public function __construct(Transformable $inner, array $args = [])
@@ -14,14 +14,10 @@ class FileCachedTransformer extends AbstractTransformer
 
         $options = $this->options();
         $options
-            ->setUnlessExists('codec', null)
             ->setUnlessExists('key', md5($this->inner()->scent()))
-            ->force('path')
-            ->setUnlessExists('ttl', 300)
+            ->force('cache', function($item) {return is_a($item, 'Filchos\\Imago\\Cache\\CacheInterface'); })
+            ->force('key', function($item) { return is_string($item) && strlen($item) <= 32; })
         ;
-
-        $cache = new FileCache($options->get('path'), $options->get('ttl'), $options->get('codec'));
-        $options->set('cache', $cache);
     }
 
     public function get()

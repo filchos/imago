@@ -2,44 +2,40 @@
 
 namespace Filchos\Imago\Cache;
 
-use Filchos\Imago\Container\AbstractContainer;
-
-class FileCache extends AbstractContainer
+class FileCache extends AbstractCache
 {
 
-    protected $path;
-    protected $ttl;
-    protected $codec;
-
-    // TODO: better injection
-
-    public function __construct($path, $ttl, CodecInterface $codec = null)
+    public function __construct(array $options = [])
     {
-        if (is_null($codec)) {
-            $codec = new PhpSerializeCodec;
-        }
-
-        $this->path  = rtrim($path, '/') . '/';
-        $this->ttl   = $ttl;
-        $this->codec = $codec;
+        parent::__construct($options);
+        $this->options
+            ->setUnlessExists('codec', new PhpSerializeCodec())
+            ->force('codec', function($item) { return is_a($item, 'Filchos\\Imago\\Cache\\CodecInterface'); })
+            ->force('path')
+            ->force('ttl', function($number) { return is_int($number) && $number > 0; })
+        ;
+        $this->options['path'] = rtrim($this->options['path'], '/') . '/';
     }
 
     public function offsetExists($key)
     {
         $path = $this->getPath($key);
-        return file_exists($path) && filemtime($path) + $this->ttl >= time();
+        $ttl  = $this->options->get('ttl');
+        return file_exists($path) && filemtime($path) + $ttl >= time();
     }
 
     public function offsetSet($key, $value)
     {
-        $path = $this->getPath($key);
-        file_put_contents($path, $this->codec->encode($value));
+        $path  = $this->getPath($key);
+        $codec = $this->getCodec();
+        file_put_contents($path, $codec->encode($value));
     }
 
     public function offsetGet($key)
     {
-        $path = $this->getPath($key);
-        return $this->codec->decode(file_get_contents($path));
+        $path  = $this->getPath($key);
+        $codec = $this->getCodec();
+        return $codec->decode(file_get_contents($path));
     }
 
     public function offsetUnset($key)
@@ -50,15 +46,21 @@ class FileCache extends AbstractContainer
 
     public function flush()
     {
-        $pattern = $this->path . '*.cache';
+        $pattern = $this->getPath('*', false);
         $paths = glob($pattern);
         foreach ($paths as $path) {
             unlink($path);
         }
     }
 
-    protected function getPath($key)
+    protected function getCodec()
     {
-        return $this->path . md5($key) . '.cache';
+        return $this->options()->get('codec');
+    }
+
+    protected function getPath($key, $hash = true)
+    {
+        $name = ($hash ? md5($key) : $key) . '.cache';
+        return $this->options()->get('path') . $name;
     }
 }
