@@ -2,14 +2,14 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Cache\FileCache;
-
 class FileCacheTest extends PHPUnit_Framework_TestCase
 {
 
+    const A_WHOLE_HOUR = 3600;
+
     public function setUp()
     {
-        $this->cache = new FileCache([
+        $this->cache = new DateableFileCache([
             'path' => $this->getCachePath(),
             'ttl'  => 60
         ]);
@@ -58,9 +58,7 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
     public function testExpired()
     {
         $this->cache->set('city', 'Murjek');
-        $path = $this->getCachePath() . md5('city') . '.cache';
-        touch($path, time() - 1000000);
-        clearstatcache();
+        $this->cache->redate('city', -self::A_WHOLE_HOUR);
         $this->cache->get('city');
     }
 

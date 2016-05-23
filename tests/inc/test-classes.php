@@ -1,7 +1,18 @@
 <?php
 
+use Filchos\Imago\Cache\FileCache;
 use Filchos\Imago\Source\AbstractSource;
 use Filchos\Imago\Transformer\AbstractTransformer;
+
+class DateableFileCache extends FileCache
+{
+    public function redate($key, $offset)
+    {
+        $path = $this->getPath($key);
+        touch($path, filemtime($path) + $offset);
+        clearstatcache();
+   }
+}
 
 class ExceptionThrower extends AbstractSource
 {

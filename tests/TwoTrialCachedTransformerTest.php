@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Cache\FileCache;
 use Filchos\Imago\Transformer\CachedTransformer;
 use Filchos\Imago\Transformer\TwoTrialsCachedTransformer;
 
@@ -17,15 +16,15 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->cachePath = __DIR__ . '/cache/';
-        $cache = new FileCache([
+        $this->cache = new DateableFileCache([
             'path' => $this->cachePath,
             'ttl'  => self::FIVE_MINUTES
         ]);
-        $cache->flush();
+        $this->cache->flush();
         (new OnceSource())->reset();
 
         $this->options = [
-            'cache' => $cache,
+            'cache' => $this->cache,
             'key'  => '2trialfile',
             'ttl2'  => self::A_WHOLE_HOUR,
         ];
@@ -65,9 +64,7 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
             $imago = new OnceSource();
             $imago = new CachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
-
-            touch($this->cachePath . md5('2trialfile') . '.cache', time() - self::HALF_AN_HOUR);
-            clearstatcache();
+            $this->cache->redate('2trialfile', - self::HALF_AN_HOUR);
         }
         $this->assertSame($values[0], $values[1]);
     }
@@ -81,9 +78,7 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
             $imago = new OnceSource();
             $imago = new TwoTrialsCachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
-
-            touch($this->cachePath . md5('2trialfile') . '.cache', time() - self::HALF_AN_HOUR);
-            clearstatcache();
+            $this->cache->redate('2trialfile', - self::HALF_AN_HOUR);
         }
         $this->assertSame($values[0], $values[1]);
     }
@@ -100,9 +95,7 @@ class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
             $imago = new OnceSource();
             $imago = new TwoTrialsCachedTransformer($imago, $this->options);
             $values[$index] = $imago->get();
-
-            touch($this->cachePath . md5('2trialfile') . '.cache', time() - self::A_WHOLE_DAY);
-            clearstatcache();
+            $this->cache->redate('2trialfile', - self::A_WHOLE_DAY);
         }
         $this->assertSame($values[0], $values[1]);
     }
