@@ -41,6 +41,11 @@ abstract class AbstractSource implements Transformable
 
     public function scent()
     {
-        return get_class($this) . '(' . json_encode($this->options->all(), JSON_FORCE_OBJECT) . ')';
+        return get_class($this) . '(' . json_encode($this->getScentParameters(), JSON_FORCE_OBJECT) . ')';
+    }
+
+    protected function getScentParameters()
+    {
+        return $this->options->all();
     }
 }
