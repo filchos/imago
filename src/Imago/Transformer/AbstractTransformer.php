@@ -42,5 +42,4 @@ abstract class AbstractTransformer extends AbstractSource
     }
 
     abstract protected function transform($mixed);
-
 }

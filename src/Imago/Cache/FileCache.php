@@ -52,7 +52,7 @@ class FileCache extends AbstractContainer
     {
         $pattern = $this->path . '*.cache';
         $paths = glob($pattern);
-        foreach($paths as $path) {
+        foreach ($paths as $path) {
             unlink($path);
         }
     }
