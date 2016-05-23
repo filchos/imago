@@ -41,12 +41,4 @@ class FirstOf extends AbstractTransformer
         }
         throw new FirstOfException;
     }
-
-    /**
-     * not used, this just fulfils the contract
-     */
-    protected function transform($input)
-    {
-        return null;
-    }
 }

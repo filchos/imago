@@ -20,12 +20,4 @@ class ExceptionCatcher extends AbstractTransformer
         }
         return $inputData;
     }
-
-    /**
-     * not used, this just fulfils the contract
-     */
-    protected function transform($input)
-    {
-        return null;
-    }
 }

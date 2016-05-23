@@ -41,5 +41,9 @@ abstract class AbstractTransformer extends AbstractSource
         return true;
     }
 
-    abstract protected function transform($mixed);
+    protected function transform($input)
+    {
+        $output = $input;
+        return $output;
+    }
 }

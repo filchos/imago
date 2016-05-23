@@ -39,9 +39,4 @@ class FileCachedTransformer extends AbstractTransformer
         }
         return $data;
     }
-
-    public function transform($input)
-    {
-        return $input;
-    }
 }
