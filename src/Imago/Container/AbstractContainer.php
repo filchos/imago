@@ -16,7 +16,7 @@ abstract class AbstractContainer implements ArrayAccess, ContainerInterface
         } elseif (func_num_args() > 1) {
             return $default;
         } else {
-            throw new MissingKeyException;
+            throw new MissingKeyException('Missing key ' . $key);
         }
     }
 
