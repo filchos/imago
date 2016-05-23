@@ -33,7 +33,7 @@ class CachedTransformerTest extends PHPUnit_Framework_TestCase
             $imago = new CachedTransformer($imago, [
                 'cache' => new FileCache([
                    'path' => $this->cachePath,
-                    'ttl'  => 300
+                   'ttl'  => 300
                 ])
             ]);
             $values[] = $imago->get();
