@@ -9,7 +9,10 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->cache = $this->getOneMinuteFileCache();
+        $this->cache = new FileCache([
+            'path' => $this->getCachePath(),
+            'ttl'  => 60
+        ]);
         $this->cache->flush();
     }
 
@@ -75,16 +78,18 @@ class FileCacheTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Lapland', $value);
     }
 
+    public function testIndependentOptionContainerOnClone()
+    {
+        $newCache = clone $this->cache;
+        $this->assertSame(60, $newCache->options()->get('ttl'));
+        $newCache->options()->set('ttl', 3600);
+        $this->assertSame(3600, $newCache->options()->get('ttl'));
+        $this->assertSame(60, $this->cache->options()->get('ttl'));
+    }
+
+
     protected function getCachePath()
     {
         return __DIR__ . '/cache/';
-    }
-
-    protected function getOneMinuteFileCache()
-    {
-        return new FileCache([
-            'path' => $this->getCachePath(),
-            'ttl'  => 60
-        ]);
     }
 }

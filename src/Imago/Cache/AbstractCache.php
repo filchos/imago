@@ -15,6 +15,11 @@ abstract class AbstractCache extends AbstractContainer implements CacheInterface
         $this->options = new LocalContainer($args);
     }
 
+    public function __clone()
+    {
+        $this->options = clone $this->options;
+    }
+
     public function options()
     {
         return $this->options;

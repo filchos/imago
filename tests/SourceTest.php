@@ -28,6 +28,15 @@ class ScourceTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Skellefteå', $options->get('city'));
     }
 
+    public function testIndependentOptionContainerOnClone()
+    {
+        $imago1 = new OptionSource(['city' => 'Kurravaara']);
+        $imago2 = clone $imago1;
+        $this->assertSame('Kurravaara', $imago2->options()->get('city'));
+        $imago2->options()->set('city', 'Jukkasjärvi');
+        $this->assertSame('Kurravaara', $imago1->options()->get('city'));
+    }
+
     public function testMetaContainer()
     {
         $imago = new MetaSource;

@@ -17,6 +17,12 @@ abstract class AbstractSource implements Transformable
         $this->meta    = new LocalContainer([]);
     }
 
+    public function __clone()
+    {
+        $this->options = clone $this->options;
+        $this->meta    = clone $this->meta;
+    }
+
     abstract public function get();
 
     public function __invoke()
