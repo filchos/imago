@@ -10,9 +10,9 @@ abstract class AbstractCache extends AbstractContainer implements CacheInterface
 
     protected $options;
 
-    public function __construct(array $options = [])
+    public function __construct(array $args = [])
     {
-        $this->options = new LocalContainer($options);
+        $this->options = new LocalContainer($args);
     }
 
     public function options()

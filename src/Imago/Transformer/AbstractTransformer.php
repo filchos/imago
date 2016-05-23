@@ -11,9 +11,9 @@ abstract class AbstractTransformer extends AbstractSource
 
     protected $inner;
 
-    public function __construct(Transformable $inner, array $options = [])
+    public function __construct(Transformable $inner, array $args = [])
     {
-        parent::__construct($options);
+        parent::__construct($args);
         $this->inner = $inner;
     }
 

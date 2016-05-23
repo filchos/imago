@@ -8,9 +8,9 @@ use Filchos\Imago\Transformable;
 class HtmlToDom extends XmlToDom
 {
 
-    public function __construct(Transformable $inner, array $options = [])
+    public function __construct(Transformable $inner, array $args = [])
     {
-        parent::__construct($inner, $options);
+        parent::__construct($inner, $args);
         $this->options()->setUnlessExists('encoding', 'UTF-8');
     }
 

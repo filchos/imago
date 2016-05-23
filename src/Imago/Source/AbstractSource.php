@@ -11,9 +11,9 @@ abstract class AbstractSource implements Transformable
     private $options;
     private $meta;
 
-    public function __construct(array $options = [])
+    public function __construct(array $args = [])
     {
-        $this->options = new LocalContainer($options);
+        $this->options = new LocalContainer($args);
         $this->meta    = new LocalContainer([]);
     }
 
@@ -34,9 +34,9 @@ abstract class AbstractSource implements Transformable
         return $this->meta;
     }
 
-    public function to($decoratorClassName, array $options = [])
+    public function to($decoratorClassName, array $args = [])
     {
-        return new $decoratorClassName($this, $options);
+        return new $decoratorClassName($this, $args);
     }
 
     public function scent()

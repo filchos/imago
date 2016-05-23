@@ -5,9 +5,9 @@ namespace Filchos\Imago\Cache;
 class FileCache extends AbstractCache
 {
 
-    public function __construct(array $options = [])
+    public function __construct(array $args = [])
     {
-        parent::__construct($options);
+        parent::__construct($args);
         $this->options
             ->setUnlessExists('codec', new PhpSerializeCodec())
             ->force('codec', function ($item) { return is_a($item, 'Filchos\\Imago\\Cache\\CodecInterface'); })
