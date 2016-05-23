@@ -2,6 +2,8 @@
 
 namespace Filchos\Imago\Cache;
 
+use Filchos\Imago\Codec\PhpSerializeCodec;
+
 class FileCache extends AbstractCache
 {
 
@@ -10,7 +12,7 @@ class FileCache extends AbstractCache
         parent::__construct($args);
         $this->options
             ->setUnlessExists('codec', new PhpSerializeCodec())
-            ->force('codec', function ($item) { return is_a($item, 'Filchos\\Imago\\Cache\\CodecInterface'); })
+            ->force('codec', function ($item) { return is_a($item, 'Filchos\\Imago\\Codec\\CodecInterface'); })
             ->force('path')
             ->force('ttl', function ($number) { return is_int($number) && $number > 0; })
         ;

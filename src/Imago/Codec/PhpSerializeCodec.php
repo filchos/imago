@@ -1,6 +1,6 @@
 <?php
 
-namespace Filchos\Imago\Cache;
+namespace Filchos\Imago\Codec;
 
 class PhpSerializeCodec implements CodecInterface
 {

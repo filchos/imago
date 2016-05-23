@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Filchos\Imago\Cache\JsonCodec;
-use Filchos\Imago\Cache\PhpSerializeCodec;
+use Filchos\Imago\Codec\JsonCodec;
+use Filchos\Imago\Codec\PhpSerializeCodec;
 
 class CodecTest extends PHPUnit_Framework_TestCase
 {
