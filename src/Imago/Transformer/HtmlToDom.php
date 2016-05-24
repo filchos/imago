@@ -2,7 +2,7 @@
 
 namespace Filchos\Imago\Transformer;
 
-use DOMDocument;
+use Filchos\Imago\DOM\ExtendedDOMDocument;
 use Filchos\Imago\Transformable;
 
 class HtmlToDom extends XmlToDom
@@ -25,9 +25,10 @@ class HtmlToDom extends XmlToDom
             $input = '<?xml version="1.0" encoding="UTF-8"?' . '>' . $input;
         }
 
-        $doc = new DOMDocument;
+        $doc = new ExtendedDOMDocument;
         $doc->encoding = 'UTF-8';
         $doc->loadHTML($input);
+        $doc->registerNodeClass('DOMElement', 'Filchos\\Imago\\DOM\\ExtendedDOMElement');
 
         return $doc;
     }
