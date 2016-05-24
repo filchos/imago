@@ -5,6 +5,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 class FileCacheTest extends PHPUnit_Framework_TestCase
 {
 
+    use FinallyEmptyCacheTrait;
+
     const A_WHOLE_HOUR = 3600;
 
     public function setUp()

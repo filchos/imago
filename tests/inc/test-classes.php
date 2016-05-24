@@ -27,6 +27,19 @@ class ExceptionThrowException extends Exception
 {
 }
 
+trait FinallyEmptyCacheTrait
+{
+
+    public static function tearDownAfterClass()
+    {
+        $cache = new FileCache([
+            'path' => dirname(__DIR__) . '/cache/',
+            'ttl'  => 60
+        ]);
+        $cache->flush();
+    }
+}
+
 class JokkmokkSource extends AbstractSource
 {
 

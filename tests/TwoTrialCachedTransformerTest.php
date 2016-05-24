@@ -8,6 +8,8 @@ use Filchos\Imago\Transformer\TwoTrialsCachedTransformer;
 class TwoTrialCachedTransformerTest extends PHPUnit_Framework_TestCase
 {
 
+    use FinallyEmptyCacheTrait;
+
     const FIVE_MINUTES = 300;
     const HALF_AN_HOUR = 1800;
     const A_WHOLE_HOUR = 3600;

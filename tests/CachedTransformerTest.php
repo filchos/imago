@@ -8,6 +8,8 @@ use Filchos\Imago\Transformer\CachedTransformer;
 class CachedTransformerTest extends PHPUnit_Framework_TestCase
 {
 
+    use FinallyEmptyCacheTrait;
+
     public function setUp()
     {
         $this->cachePath = __DIR__ . '/cache/';
