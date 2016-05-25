@@ -1,5 +1,6 @@
 {
     "name":"filchos/imago",
+    "minimum-stability": "dev",
     "description":"A library for reading and transforming content in a chainable way",
     "type":"library",
     "license":"MIT",
