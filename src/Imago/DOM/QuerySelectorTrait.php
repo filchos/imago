@@ -3,6 +3,7 @@
 namespace Filchos\Imago\DOM;
 
 use DOMXPath;
+use Symfony\Component\CssSelector\CssSelector;
 use Symfony\Component\CssSelector\CssSelectorConverter;
 use Filchos\Imago\Exception\QuerySelectorException;
 
@@ -21,7 +22,7 @@ trait QuerySelectorTrait
     {
         $doc   = $this->getOwnerDocument();
         $xpath = new DOMXPath($doc);
-        $query = (new CssSelectorConverter())->toXPath($selector);
+        $query = (new CssSelector())->toXPath($selector);
         return $xpath->query($query, $this);
     }
 }
