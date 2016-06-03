@@ -15,6 +15,8 @@ abstract class AbstractTransformer extends AbstractSource
     {
         parent::__construct($args);
         $this->inner = $inner;
+        $this->options()->setNext($inner->options());
+        $this->meta()->setNext($inner->meta());
     }
 
     public function inner()

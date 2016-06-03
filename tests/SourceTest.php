@@ -22,7 +22,7 @@ class ScourceTest extends PHPUnit_Framework_TestCase
     {
         $imago   = new OptionSource(['city' => 'Skellefteå', 'region' => 'Västerbotten']);
         $options = $imago->options();
-        $this->assertInstanceOf('Filchos\\Imago\\Container\\LocalContainer', $options);
+        $this->assertInstanceOf('Filchos\\Imago\\Container\\LocalSerialContainer', $options);
         $should = ['city' => 'Skellefteå', 'region' => 'Västerbotten'];
         $this->assertSame($should, $options->all());
         $this->assertSame('Skellefteå', $options->get('city'));
@@ -41,7 +41,7 @@ class ScourceTest extends PHPUnit_Framework_TestCase
     {
         $imago = new MetaSource;
         $meta  = $imago->meta();
-        $this->assertInstanceOf('Filchos\\Imago\\Container\\LocalContainer', $meta);
+        $this->assertInstanceOf('Filchos\\Imago\\Container\\LocalSerialContainer', $meta);
         $this->assertSame([], $meta->all());
 
         $imago->get();
