@@ -31,6 +31,60 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Kiruna', $result);
     }
 
+    public function testHeaders()
+    {
+        $url     = 'http://localhost:8000/header-test.php';
+        $headers = ['X-Imagotest' => 'Rsnqtl`m'];
+        $imago   = new HttpRequest([
+            'url'  => 'http://localhost:8000/header-plus-one-test.php',
+            'headers' => $headers
+        ]);
+        $this->assertSame('Storuman', $imago->get());
+    }
+
+    public function testVerbs()
+    {
+        $url = 'http://localhost:8000/verb-test.php';
+
+        $imago = new HttpRequest(['url'  => $url, 'verb' => 'GET']);
+        $this->assertSame('GET', $imago->get());
+
+        $imago = new HttpRequest(['url'  => $url]);
+        $this->assertSame('GET', $imago->get());
+
+        $imago = new HttpRequest(['url'  => $url, 'verb' => 'POST']);
+        $this->assertSame('POST', $imago->get());
+
+        $imago = new HttpRequest(['url'  => $url, 'verb' => 'PUT']);
+        $this->assertSame('PUT', $imago->get());
+
+        $imago = new HttpRequest(['url'  => $url, 'verb' => 'DELETE']);
+        $this->assertSame('DELETE', $imago->get());
+    }
+
+    public function testFields()
+    {
+        // no query string, but a get param
+        $url    = 'http://localhost:8000/fields-test.php';
+        $imago  = new HttpRequest(['url' => $url, 'fields' => ['city' => 'Ammarnäs']]);
+        $result = json_decode($imago->get());
+        $this->assertSame('Ammarnäs', $result->GET->city);
+
+        // query string and a get param
+        $url    = 'http://localhost:8000/fields-test.php?queryString=1';
+        $imago  = new HttpRequest(['url' => $url, 'fields' => ['city' => 'Ammarnäs']]);
+        $result = json_decode($imago->get());
+        $this->assertSame('Ammarnäs', $result->GET->city);
+        $this->assertSame('1', $result->GET->queryString);
+
+        // query string and a post param
+        $url    = 'http://localhost:8000/fields-test.php?queryString=1';
+        $imago  = new HttpRequest(['url' => $url, 'fields' => ['city' => 'Ammarnäs'], 'verb' => 'POST']);
+        $result = json_decode($imago->get());
+        $this->assertSame('Ammarnäs', $result->POST->city);
+        $this->assertSame('1', $result->GET->queryString);
+    }
+
     /**
      * @expectedException Filchos\Imago\Exception\CurlException
      * @expectedExceptionCode 6
