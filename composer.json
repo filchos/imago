@@ -25,6 +25,7 @@
         "symfony/css-selector": "2.7.*"
     },
     "require-dev":{
+        "phpdocumentor/phpdocumentor": "2.*",
         "phpunit/phpunit":"~4.0"
     },
     "support":{
