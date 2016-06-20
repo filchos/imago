@@ -5,11 +5,26 @@ namespace Filchos\Imago\Source;
 use Filchos\Imago\Exception\CurlException;
 use Filchos\Imago\Exception\CurlTimeoutException;
 
+/**
+ * Class for making a http Request and return the response
+ */
 class HttpRequest extends AbstractSource
 {
 
+    /**
+     * @var int default timeout in seconds
+     */
     const DEFAULT_TIMEOUT = 120;
 
+    /**
+     * constructor
+     * Possible option arguments
+     * - (string) `verb`    the request verb. One of GET, POST, PUT, DELETE (default is GET)
+     * - (array)  `headers` an associative array with request headers
+     * - (int)    `timeout` the timeout in seconds (default is 120, @see DEFAULT_TIMEOUT)
+     * - (array)  `fields`  either query parameters, when method is GET or post parameters otherwise
+     * - (string) `url`     the url of the request. (mandatory)
+     */
     public function __construct($mixed = [])
     {
         if (is_string($mixed)) {
@@ -25,12 +40,24 @@ class HttpRequest extends AbstractSource
         ;
     }
 
+    /**
+     * get the response of the http request (and fill some meta values)
+     * @return string the http response body
+     * Meta values (through the method executeCurl):
+     * - (array)  `responseHeaders` all resonse headers as an associative array
+     * - (string) `contentType`     the content type of the http response
+     * - (int)    `statusCode`      the status code of the http response
+     */
     public function get()
     {
         $ch = $this->getCurlHandle();
         return $this->executeCurl($ch);
     }
 
+    /**
+     * build up and return a curl handle for the appropriate  request
+     * @return resource the curl handle
+     */
     protected function getCurlHandle()
     {
         $ch               = curl_init();
@@ -71,6 +98,15 @@ class HttpRequest extends AbstractSource
         return $ch;
     }
 
+    /**
+     * execute the curl handle and return the response
+     * @param resource the curl handle
+     * @return string the response body
+     * Meta values:
+     * - (array)  `responseHeaders` all resonse headers as an associative array
+     * - (string) `contentType`     the content type of the http response
+     * - (int)    `statusCode`      the status code of the http response
+     */
     protected function executeCurl($ch)
     {
         $meta     = $this->meta();
@@ -99,6 +135,11 @@ class HttpRequest extends AbstractSource
         return $body;
     }
 
+    /**
+     * helper method for transforming the response header string into an associative array
+     * @param string the header string
+     * @return array an associative array with the response headers
+     */
     protected function parseResponseHeaders($headerString)
     {
         $headers = [];

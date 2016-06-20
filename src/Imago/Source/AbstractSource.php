@@ -47,7 +47,7 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * gets data. The data my be from different type, e.g. PHP objects, a string or a DOMDocument
+     * get data. The data my be from different type, e.g. PHP objects, a string or a DOMDocument
      * @abstract
      * @return mixed the data of a Filchos\Imago\Transformable object
      */
@@ -64,7 +64,7 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * gets the option container
+     * get the option container
      * The options act as a request to an instance. They contain e.g. url-s for http requests or
      * expiration times for caching
      * @see Filchos\Imago\Container\LocalSerialContainer and Filchos\Imago\Container\LocalContainer for the container methods
@@ -76,7 +76,7 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * gets the meta container
+     * get the meta container
      * The meta values act as an additional response from an instance. They contain e.g. response
      * headers from a http request or e caught exception
      * @see Filchos\Imago\Container\LocalSerialContainer and Filchos\Imago\Container\LocalContainer for the container methods
@@ -102,9 +102,9 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * a scent is a unique string for the class, including all decorated inner classes and all
+     * get the scent. A scent is a unique string for the class, including all decorated inner classes and all
      * options is is used by the cache class to create a unique key
-     * @return string a string containing the “scent”
+     * @return string the scent
      */
     public function scent()
     {
@@ -112,7 +112,7 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * gets all options of the current class that are relevant for building the scent.
+     * get all options of the current class that are relevant for building the scent.
      * This class could be overwritten either to remove parts of the options that cannot be
      * json-encoded or to add other parameters that are needed to make the return value unique for
      * this instance.

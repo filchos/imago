@@ -30,7 +30,7 @@ class FileReader extends AbstractSource
     }
 
     /**
-     * gets the content of a file
+     * get the content of a file
      * @throws Filchos\Imago\Exception\NotFoundException
      * @return string the file content
      */
