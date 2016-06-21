@@ -9,10 +9,6 @@
 
 namespace Filchos\Imago\Transformer;
 
-use DOMDocument;
-use Filchos\Imago\Exception\EmptyException;
-use Filchos\Imago\Exception\DomException;
-
 /**
  * transform a DomDocument to simple xml
  */
