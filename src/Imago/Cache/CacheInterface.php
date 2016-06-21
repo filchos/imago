@@ -11,8 +11,8 @@ use Filchos\Imago\Container\ContainerInterface;
 interface CacheInterface extends ContainerInterface
 {
 
-	/**
-	 * remove all (known) cache files
-	 */
+    /**
+     * remove all (known) cache files
+     */
     public function flush();
 }

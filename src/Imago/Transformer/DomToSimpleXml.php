@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * part of the library filchos/imago
+ *
+ * @package filchos/imago
+ * @author  Olaf Schneider <mail@olafschneider.net>
+ */
+
 namespace Filchos\Imago\Transformer;
 
 use DOMDocument;

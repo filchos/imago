@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * part of the library filchos/imago
+ *
+ * @package filchos/imago
+ * @author  Olaf Schneider <mail@olafschneider.net>
+ */
+
 namespace Filchos\Imago\Source;
 
 /**
@@ -9,12 +16,12 @@ namespace Filchos\Imago\Source;
 class Value extends AbstractSource
 {
 
-	/**
-	 * constructor
-	 * takes any value
+    /**
+     * constructor
+     * takes any value
      *
-	 * @param mixed anything
-	 */
+     * @param mixed anything
+     */
     public function __construct($mixed)
     {
         parent::__construct(['value' => $mixed]);

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * part of the library filchos/imago
+ *
+ * @package filchos/imago
+ * @author  Olaf Schneider <mail@olafschneider.net>
+ */
+
 namespace Filchos\Imago\Transformer;
 
 use Filchos\Imago\Exception\AcceptException;
@@ -80,6 +87,7 @@ abstract class AbstractTransformer extends AbstractSource
      * matches the needs of the current class.
      *
      * @see Filchos\Imago\Transformer\DomToSimpleXml for a simple example
+     * @param mixed the result of the inner transformable
      * @return bool is the result of the inner container accepted?
      */
     protected function accept($input)

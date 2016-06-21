@@ -1,19 +1,35 @@
 <?php
 
+/**
+ * part of the library filchos/imago
+ *
+ * @package filchos/imago
+ * @author  Olaf Schneider <mail@olafschneider.net>
+ */
+
 namespace Filchos\Imago\Transformer;
 
 use Exception as AnyException;
 use Filchos\Imago\Exception\FirstOfException;
-use Filchos\Imago\Exception\NotTransformableException;
 use Filchos\Imago\Transformable;
 
+/**
+ * get the result of the first transformable (of a list of transformables) that
+ * doesn’t throw an exception
+ */
 class FirstOf extends AbstractTransformer
 {
 
+    /**
+     * @var array of Transformables
+     */
     protected $innerCollection;
 
-    protected $innerData;
-
+    /**
+     * constructor
+     *
+     * @param Filchos\Imago\Transformable $inner the inner transformer
+     */
     public function __construct(Transformable $inner)
     {
         parent::__construct($inner);
@@ -22,12 +38,22 @@ class FirstOf extends AbstractTransformer
         $this->innerCollection = [$inner];
     }
 
+    /**
+     * add another transformable to the list
+     * @param Filchos\Imago\Transformable $inner a fallback transformable
+     * @return $this for method chaining
+     */
     public function otherwise(Transformable $inner)
     {
         $this->innerCollection[] = $inner;
-        return $this; // chainable
+        return $this;
     }
 
+    /**
+     * get a result of the first transformable doesn’t throw an exception
+     *
+     * @throws Filchos\Imago\Exception\FirstOfException when no transformable went through
+     */
     public function get()
     {
         foreach ($this->innerCollection as $inner) {
