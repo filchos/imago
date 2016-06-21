@@ -14,6 +14,6 @@ namespace Filchos\Imago\Exception;
  *
  * @see Filchos\Imago\Container\AbstractContainer::force()
  */
-class InvalidValueException extends KeyException
+class InvalidValueException extends Exception
 {
 }
