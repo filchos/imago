@@ -41,5 +41,19 @@ class CachedTransformerTest extends PHPUnit_Framework_TestCase
             $values[] = $imago->get();
         }
         $this->assertEquals($values[0], $values[1]);
+        $this->assertTrue($imago->meta()->get('cached'));
+    }
+
+    public function testOnce()
+    {
+        $imago = new RandomValue();
+        $imago = new CachedTransformer($imago, [
+            'cache' => new FileCache([
+               'path' => $this->cachePath,
+               'ttl'  => 300
+            ])
+        ]);
+        $value = $imago->get();
+        $this->assertFalse($imago->meta()->get('cached'));
     }
 }

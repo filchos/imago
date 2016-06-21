@@ -9,8 +9,11 @@ use Filchos\Imago\Transformable;
  * take data from cache instead from inner transformable when the cache exists and is valid
  *
  * options:
- * - (string) key   the cache key (default: the scent of the inner transformable)
- * - (string) cache the cache object (mandatory)
+ * - (string) key    the cache key (default: the scent of the inner transformable)
+ * - (string) cache  the cache object (mandatory)
+ *
+ * meta values:
+ * - (bool)   cached comes the result from the cache?
  */
 class CachedTransformer extends AbstractTransformer
 {
@@ -44,7 +47,10 @@ class CachedTransformer extends AbstractTransformer
         $cache   = $options->get('cache');
         $key     = $options->get('key');
 
-        if ($cache->has($key)) {
+        $cached  = $cache->has($key);
+        $this->meta()->set('cached', $cached);
+
+        if ($cached) {
             $data = $cache->get($key);
         } else {
             $data = $this->inner()->get();
