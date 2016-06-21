@@ -7,6 +7,18 @@ use Filchos\Imago\Exception\CurlTimeoutException;
 
 /**
  * Class for making a http Request and return the response
+ *
+ * options:
+ * - (string) verb            the request verb. One of GET, POST, PUT, DELETE (default is GET)
+ * - (array)  headers         an associative array with request headers
+ * - (int)    timeout         the timeout in seconds (default is 120, @see DEFAULT_TIMEOUT)
+ * - (array)  fields          either query parameters, when method is GET or post parameters otherwise
+ * - (string) url             the url of the request. May contain a query string (mandatory)
+ *
+ * meta values:
+ * - (array)  responseHeaders all resonse headers as an associative array
+ * - (string) contentType     the content type of the http response
+ * - (int)    statusCode      the status code of the http response
  */
 class HttpRequest extends AbstractSource
 {
@@ -18,12 +30,11 @@ class HttpRequest extends AbstractSource
 
     /**
      * constructor
-     * Possible option arguments
-     * - (string) `verb`    the request verb. One of GET, POST, PUT, DELETE (default is GET)
-     * - (array)  `headers` an associative array with request headers
-     * - (int)    `timeout` the timeout in seconds (default is 120, @see DEFAULT_TIMEOUT)
-     * - (array)  `fields`  either query parameters, when method is GET or post parameters otherwise
-     * - (string) `url`     the url of the request. (mandatory)
+     *
+     * @param (string|array) option arguments. If this is a string it is used as the url option
+     * @throws Filchos\Imago\Exception\OptionException on invalid argument
+
+     * @param array $args option arguments
      */
     public function __construct($mixed = [])
     {
@@ -42,11 +53,8 @@ class HttpRequest extends AbstractSource
 
     /**
      * get the response of the http request (and fill some meta values)
+     *
      * @return string the http response body
-     * Meta values (through the method executeCurl):
-     * - (array)  `responseHeaders` all resonse headers as an associative array
-     * - (string) `contentType`     the content type of the http response
-     * - (int)    `statusCode`      the status code of the http response
      */
     public function get()
     {
@@ -56,6 +64,7 @@ class HttpRequest extends AbstractSource
 
     /**
      * build up and return a curl handle for the appropriate  request
+     *
      * @return resource the curl handle
      */
     protected function getCurlHandle()
@@ -100,12 +109,9 @@ class HttpRequest extends AbstractSource
 
     /**
      * execute the curl handle and return the response
+     *
      * @param resource the curl handle
      * @return string the response body
-     * Meta values:
-     * - (array)  `responseHeaders` all resonse headers as an associative array
-     * - (string) `contentType`     the content type of the http response
-     * - (int)    `statusCode`      the status code of the http response
      */
     protected function executeCurl($ch)
     {
@@ -137,6 +143,7 @@ class HttpRequest extends AbstractSource
 
     /**
      * helper method for transforming the response header string into an associative array
+     *
      * @param string the header string
      * @return array an associative array with the response headers
      */

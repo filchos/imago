@@ -12,6 +12,7 @@ class Value extends AbstractSource
 	/**
 	 * constructor
 	 * takes any value
+     *
 	 * @param mixed anything
 	 */
     public function __construct($mixed)
@@ -21,6 +22,7 @@ class Value extends AbstractSource
 
     /**
      * returns the value used in the constructor
+     *
      * @return mixed the value
      */
     public function get()

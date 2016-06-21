@@ -5,9 +5,23 @@ namespace Filchos\Imago\Transformer;
 use Filchos\Imago\Cache\FileCache;
 use Filchos\Imago\Transformable;
 
+/**
+ * take data from cache instead from inner transformable when the cache exists and is valid
+ *
+ * options:
+ * - (string) key   the cache key (default: the scent of the inner transformable)
+ * - (string) cache the cache object (mandatory)
+ */
 class CachedTransformer extends AbstractTransformer
 {
 
+    /**
+     * constructor
+     *
+     * @param Filchos\Imago\Transformable $inner the inner transformer
+     * @param array $args option arguments
+     * @throws Filchos\Imago\Exception\OptionException on invalid argument
+     */
     public function __construct(Transformable $inner, array $args = [])
     {
         parent::__construct($inner, $args);
@@ -19,6 +33,11 @@ class CachedTransformer extends AbstractTransformer
         ;
     }
 
+    /**
+     * get either a cached version of the data or get data from the inner transformable
+     *
+     * @return mixed the data
+     */
     public function get()
     {
         $options = $this->options();

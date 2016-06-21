@@ -7,6 +7,9 @@ use Filchos\Imago\Exception\OptionException;
 
 /**
  * reads and returns the content of a local file
+ *
+ * options:
+ * - (string) path the file path (mandatory)
  */
 class FileReader extends AbstractSource
 {
@@ -14,10 +17,8 @@ class FileReader extends AbstractSource
     /**
      * constructor
      *
-     * @param (string|array) the option arguments. If this is a string it is used as the path option
+     * @param (string|array) option arguments. If this is a string it is used as the path option
      * @throws Filchos\Imago\Exception\OptionException on invalid argument
-     * Possible option arguments
-     * - (string) `path` the file path (mandatory)
      */
     public function __construct($mixed)
     {

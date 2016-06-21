@@ -6,6 +6,9 @@ use ArrayAccess;
 use Filchos\Imago\Exception\InvalidKeyException;
 use Filchos\Imago\Exception\MissingKeyException;
 
+/**
+ * @abstract
+ */
 abstract class AbstractContainer implements ArrayAccess, ContainerInterface
 {
 

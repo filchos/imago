@@ -6,6 +6,9 @@ use Filchos\Imago\Container\AbstractContainer;
 use Filchos\Imago\Container\LocalContainer;
 use Filchos\Imago\Codec\PhpSerializeCodec;
 
+/**
+ * @abstract
+ */
 abstract class AbstractCache extends AbstractContainer implements CacheInterface
 {
 

@@ -8,6 +8,7 @@ use Filchos\Imago\Transformable;
 /**
  * abstract class for all Filchos\Imago\Transformable objects, that don’t decorate another
  * transformer. Since these classes are independant of other Transformables, they are called sources
+ *
  * @abstract
  */
 abstract class AbstractSource implements Transformable
@@ -15,21 +16,24 @@ abstract class AbstractSource implements Transformable
 
     /**
      * the option container
-     * @see AbstractSource->options
+     *
+     * @see AbstractSource::options
      * @var SerialContainerInterface
      */
     private $options;
 
     /**
      * the meta container
-     * @see AbstractSource->meta
+     *
+     * @see AbstractSource::meta
      * @var SerialContainerInterface
      */
     private $meta;
 
     /**
      * constructor
-     * @param array $args optional arguments
+     *
+     * @param array $args optional option arguments
      */
     public function __construct(array $args = [])
     {
@@ -48,6 +52,7 @@ abstract class AbstractSource implements Transformable
 
     /**
      * get data. The data my be from different type, e.g. PHP objects, a string or a DOMDocument
+     *
      * @abstract
      * @return mixed the data of a Filchos\Imago\Transformable object
      */
@@ -56,6 +61,7 @@ abstract class AbstractSource implements Transformable
     /**
      * helper to make the object callable. Instead of $instance->get() it is possible to call
      * $instance()
+     *
      * @return mixed the data of a Filchos\Imago\Transformable object
      */
     public function __invoke()
@@ -67,7 +73,9 @@ abstract class AbstractSource implements Transformable
      * get the option container
      * The options act as a request to an instance. They contain e.g. url-s for http requests or
      * expiration times for caching
-     * @see Filchos\Imago\Container\LocalSerialContainer and Filchos\Imago\Container\LocalContainer for the container methods
+     *
+     * @see Filchos\Imago\Container\LocalSerialContainer
+     * @see Filchos\Imago\Container\LocalContainer
      * @return SerialContainerInterface options
      */
     public function options()
@@ -79,7 +87,9 @@ abstract class AbstractSource implements Transformable
      * get the meta container
      * The meta values act as an additional response from an instance. They contain e.g. response
      * headers from a http request or e caught exception
-     * @see Filchos\Imago\Container\LocalSerialContainer and Filchos\Imago\Container\LocalContainer for the container methods
+     *
+     * @see Filchos\Imago\Container\LocalSerialContainer
+     * @see Filchos\Imago\Container\LocalContainer
      * @return SerialContainerInterface meta values
      */
     public function meta()
@@ -92,6 +102,7 @@ abstract class AbstractSource implements Transformable
      * instead of writing $imago = new OuterClass(new InnerClass); you could write
      * (new InnerClass)->to('OuterClass'). You could say, that the OuterClass decorates the
      * InnerClass.
+     *
      * @param string the full decorator class name including the namespace
      * @param array $args optional arguments for the decorator
      * @return Filchos\Imago\Transformable the decorator class, that decorated $this
@@ -102,8 +113,9 @@ abstract class AbstractSource implements Transformable
     }
 
     /**
-     * get the scent. A scent is a unique string for the class, including all decorated inner classes and all
-     * options is is used by the cache class to create a unique key
+     * get the scent. A scent is a unique string for the class, including all decorated inner
+     * classes and all options is is used by the cache class to create a unique key
+     *
      * @return string the scent
      */
     public function scent()
@@ -117,6 +129,7 @@ abstract class AbstractSource implements Transformable
      * json-encoded or to add other parameters that are needed to make the return value unique for
      * this instance.
      * This method should only be called by the scent method.
+     *
      * @return array a list of parameters that are unique for this instance
      */
     protected function getScentParameters()
