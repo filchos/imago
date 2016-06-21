@@ -14,15 +14,17 @@ use Symfony\Component\CssSelector\CssSelector;
 use Symfony\Component\CssSelector\CssSelectorConverter;
 
 /**
- * adds two dom methods: querySelector and querySelectorAll to mimic the JavaScript
- * DOM functions with the same name
+ * adds two dom methods: querySelector and querySelectorAll to mimic the JavaScript DOM functions
+ * with the same name
  */
 trait QuerySelectorTrait
 {
 
     /**
-     * gets the first DOM element by a given selector
+     * gets the first DOM element by a given selector or null, when no matching element was found
      *
+     * @param string $selector the query selector
+     * @return DOMElement (or a subclass) the first matching element or null
      */
     public function querySelector($selector)
     {
@@ -33,6 +35,12 @@ trait QuerySelectorTrait
         return null;
     }
 
+    /**
+     * returns a list of DOM elements matching the query
+     *
+     * @param string $selector the query selector
+     * @return DOMNodeList a list of matching elements
+     */
     public function querySelectorAll($selector)
     {
         $doc   = $this->getOwnerDocument();
