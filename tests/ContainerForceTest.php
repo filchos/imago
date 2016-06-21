@@ -32,7 +32,7 @@ class ContainerForceTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Filchos\Imago\Exception\InvalidKeyException
+     * @expectedException Filchos\Imago\Exception\InvalidValueException
      */
     public function testInvalidPattern()
     {
@@ -44,7 +44,7 @@ class ContainerForceTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Filchos\Imago\Exception\InvalidKeyException
+     * @expectedException Filchos\Imago\Exception\InvalidValueException
      */
     public function testDeniedByCallback()
     {

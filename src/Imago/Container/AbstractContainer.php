@@ -3,7 +3,7 @@
 namespace Filchos\Imago\Container;
 
 use ArrayAccess;
-use Filchos\Imago\Exception\InvalidKeyException;
+use Filchos\Imago\Exception\InvalidValueException;
 use Filchos\Imago\Exception\MissingKeyException;
 
 /**
@@ -59,7 +59,7 @@ abstract class AbstractContainer implements ArrayAccess, ContainerInterface
                     $valid = preg_match($validator, $value);
                 }
                 if (!$valid) {
-                    throw new InvalidKeyException('Invalid key ' . $key);
+                    throw new InvalidValueException('Invalid key ' . $key);
                 }
             }
         } else {
