@@ -38,10 +38,8 @@ class HttpRequest extends AbstractSource
     /**
      * constructor
      *
-     * @param (string|array) option arguments. If this is a string it is used as the url option
+     * @param (string|array) $mixed option arguments. If this is a string it is used as the url option
      * @throws Filchos\Imago\Exception\OptionException on invalid argument
-
-     * @param array $args option arguments
      */
     public function __construct($mixed = [])
     {
