@@ -13,7 +13,9 @@ class FileReader extends AbstractSource
 
     /**
      * constructor
+     *
      * @param (string|array) the option arguments. If this is a string it is used as the path option
+     * @throws Filchos\Imago\Exception\OptionException on invalid argument
      * Possible option arguments
      * - (string) `path` the file path (mandatory)
      */
@@ -31,13 +33,14 @@ class FileReader extends AbstractSource
 
     /**
      * get the content of a file
-     * @throws Filchos\Imago\Exception\NotFoundException
+     *
      * @return string the file content
+     * @throws Filchos\Imago\Exception\NotFoundException on file not readable
      */
     public function get()
     {
         $path = $this->options()->get('path');
-        if (is_readable($path)) {
+        if (is_readable($path) && !is_dir($path)) {
             return file_get_contents($path);
         } else {
             throw new NotFoundException($path);

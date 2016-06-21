@@ -40,6 +40,15 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Haparanda', $imago->get());
     }
 
+    /**
+     * @expectedException Filchos\Imago\Exception\NotFoundException
+     */
+    public function testReadFolder()
+    {
+        $imago = new FileReader(['path' => __DIR__ . '/files']);
+        $this->assertSame('Haparanda', $imago->get());
+    }
+
     public function testOption()
     {
         $imago = new FileReader(['path' => __DIR__ . '/files/city.txt']);
