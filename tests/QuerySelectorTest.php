@@ -36,11 +36,9 @@ class QuerySelectorTest extends PHPUnit_Framework_TestCase
         $this->assertSame('Sävar', $city->nodeValue);
     }
 
-    /**
-     * @expectedException Filchos\Imago\Exception\QuerySelectorException
-     */
     public function testNotFound()
     {
-        $this->doc->querySelector('h1.city');
+        $result = $this->doc->querySelector('h1.city');
+        $this->assertNull($result);
     }
 }
