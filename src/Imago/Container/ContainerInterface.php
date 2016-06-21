@@ -2,7 +2,9 @@
 
 namespace Filchos\Imago\Container;
 
-interface ContainerInterface
+use ArrayAccess;
+
+interface ContainerInterface extends ArrayAccess
 {
 
     public function get($key, $default = null);

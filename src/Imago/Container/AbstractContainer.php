@@ -2,14 +2,13 @@
 
 namespace Filchos\Imago\Container;
 
-use ArrayAccess;
 use Filchos\Imago\Exception\InvalidValueException;
 use Filchos\Imago\Exception\MissingKeyException;
 
 /**
  * @abstract
  */
-abstract class AbstractContainer implements ArrayAccess, ContainerInterface
+abstract class AbstractContainer implements ContainerInterface
 {
 
     public function get($key, $default = null)
